@@ -19,7 +19,7 @@ export default{
 
 <template>
     <div class="headerShow">
-        <RouterLink to="/" class="a" :class="{'cass': this.location === 1}">Home</RouterLink>
+        <RouterLink to="/" class="a" :class="{'cass': this.location === 1}" style="margin-top: 50px;">Home</RouterLink>
         <RouterLink to="/about" class="a" :class="{'cass': this.location === 2}">About</RouterLink>
         <RouterLink to="/VtextAndVmodel" class="a" :class="{'cass': this.location === 3}">VtextAndVmodel</RouterLink>
         <RouterLink to="/Vfor" class="a" :class="{'cass': this.location === 4}">Vfor</RouterLink>
@@ -42,6 +42,8 @@ export default{
     widows: 100%;
     height: 100%;
     background-color: azure;
+    display: flex;
+    flex-direction: column;
 }
 .a{
     margin-left: 10px;
