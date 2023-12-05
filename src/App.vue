@@ -40,7 +40,7 @@ export default {
   overflow: hidden;
   z-index: 1;
   &:hover{
-    width: 20vw;
+    width: 25vw;
   }
   height: 0vh;
 }
@@ -67,6 +67,7 @@ export default {
   left: 20px;
   z-index: 5;
   background-color: bisque;
+  font-family: 'OradanoGSRR';
 }
 }
 </style>

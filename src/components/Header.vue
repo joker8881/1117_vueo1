@@ -48,7 +48,13 @@ export default{
 .a{
     margin-left: 10px;
     font-size: 2em;
-    text-decoration: none
+    text-decoration: none;
+    white-space:nowrap;
+    transition: 0.4s;
+    &:hover{
+        background-color: gainsboro;
+        color:darkslategray
+    }
 }
 
 .cass{

@@ -3,16 +3,14 @@ import { mapState,mapActions } from 'pinia'
 import counter from '../stores/counter'
 export default{
     data(){
+      return{
+      }
     },
     computed:{
         ...mapState(counter, ["obj1"])
     },
     methods:{
-        ...mapActions(counter,["getLocation","setLocation","getData"]),
-        get(){
-            this.getData()
-            this.obj = this.obj1
-        }
+        ...mapActions(counter,["setLocation"]),
     },
     mounted(){
       this.setLocation(1)
@@ -51,13 +49,24 @@ export default{
   </div>
 </template>
 
-<style>
+<style scoped lang="scss">
 .title{
   .kk{
     font-family: 'OradanoGSRR';
     font-size: 4.5em;
     margin: 0;
     line-height: 1em;
+    transition: all 1s ease 0s;
+    position: relative;
+    &::after{
+      left: 50%;
+      width: 3px;
+      height: 100%;
+      top: 0;
+      content: "";
+      position: absolute;
+      z-index: -1;
+    }
   }
   .upsmall{
     position: relative;
@@ -172,5 +181,4 @@ export default{
   letter-spacing: 1px;
   }
 }
-
 </style>
