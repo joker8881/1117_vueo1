@@ -39,10 +39,7 @@ export default{
 <input type="checkbox" value="true" v-model="isLarge">
 
 <!-- 一開始的h2標籤是沒有class的，但當isBlue變成true時，則會得到性質 -->
-<h2 :class="{
-    blue: isBlue,
-    large: isLarge
-}">狗狗銀行</h2>
+<h2 :class="{blue: isBlue,large: isLarge}">狗狗銀行</h2>
 
 <h3>class[]</h3>
 <label for="">Blue</label>

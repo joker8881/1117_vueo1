@@ -11,3 +11,16 @@
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'jf-openhuninn-2.0';
+    src: url('./jf-openhuninn-2.0.woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ITCEDSCR';
+    src: url('./ITCEDSCR.woff');
+    font-weight: normal;
+    font-style: normal;
+}

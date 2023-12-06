@@ -1,9 +1,11 @@
 <script>
 import { mapState,mapActions } from 'pinia'
 import counter from '../stores/counter'
+import s from '../assets/img/'
 export default{
     data(){
       return{
+        xa:false,
       }
     },
     computed:{
@@ -11,6 +13,9 @@ export default{
     },
     methods:{
         ...mapActions(counter,["setLocation"]),
+        a(){
+          this.xa = !this.xa
+        }
     },
     mounted(){
       this.setLocation(1)
@@ -27,7 +32,7 @@ export default{
       </div>
       <div class="upline">
         <p class="upleftl"></p>
-        <p class="uplineM">Fin</p>
+        <p class="uplineM">The</p>
         <p class="upleftl"></p>
       </div>
       <div class="upline"><p class="upleft2lL"></p><p class="upleft2lR"></p></div>
@@ -47,8 +52,11 @@ export default{
     </div>
     <div class="container">
       <h1 class="h1t">神秘客現身</h1>
-      <p class="mw2">千日紅</p>
-      <p class="mw3">收集品</p>
+      <!-- <p class="mw2" @click="">千日紅</p> -->
+      <!-- <p class="mw3">收集品</p> -->
+      <div class="leftMB">
+        <div class="upPicture"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -58,7 +66,7 @@ export default{
   .kk{
     font-family: 'OradanoGSRR';
     font-size: 4.5em;
-    margin: 0;
+    margin: 20px 0 0 0;
     line-height: 1em;
     transition: all 1s ease 0s;
     position: relative;
@@ -78,12 +86,16 @@ export default{
     text-align: start;
     position: absolute;
     margin: 0 0 0 20px;
+    font-family: "jf-openhuninn-2.0";
+    top: 0px;
     }
     .upsmallR{
     text-align: end;
     position: absolute;
     right: 0;
-    margin: 0 20px 0 0;
+    margin: 0 20px 10px 0;
+    font-family: "jf-openhuninn-2.0";
+    top: 0px;
     }
   }
   .downsmall{
@@ -114,10 +126,10 @@ export default{
       background: #333;
       background-image: #333;
       }
-    .uplineM{
+    .downlineM{
       font-family: 'OradanoGSRR';
       font-size: 2em;
-      margin: 20px 0 0 0;
+      margin: 0 0 0 0;
       }
     }
   .upline{
@@ -125,11 +137,18 @@ export default{
     margin: 0 0 0 0;
     width: 100%;
     position: relative;
+    .uplineM{
+      font-family: "ITCEDSCR";
+      font-size: 4em;
+      margin: 0;
+      line-height: 50%;
+      margin-top: 20px;
+    }
     .upleft2lL{
       position: absolute;
-      top: -60px;
+      top: -40px;
       margin: 35px 20px 0 20px;
-      width: 44.8%;
+      width: 43.8%;
       border: 0;
       height: 3px;
       background: #333;
@@ -137,10 +156,10 @@ export default{
       }
       .upleft2lR{
       position: absolute;
-      top: -60px;
+      top: -40px;
       right: 0;
       margin: 35px 20px 0 20px;
-      width: 44.8%;
+      width: 43.8%;
       border: 0;
       height: 3px;
       background: #333;
@@ -172,7 +191,7 @@ export default{
       position: absolute;
       top: -10px;
       margin: 35px 20px 0 20px;
-      width: 44.8%;
+      width: 43%;
       border: 0;
       height: 3px;
       background: #333;
@@ -183,7 +202,7 @@ export default{
       top: -10px;
       right: 0;
       margin: 35px 20px 0 20px;
-      width: 44.8%;
+      width: 43%;
       border: 0;
       height: 3px;
       background: #333;
@@ -199,14 +218,65 @@ export default{
 //======================標題用分隔線======================
 .container{
     margin: 1% 2% 0 2%;
+    width: 100%;
+    height: 100%;
   .h1t{
-    font-family: bold;
+    font-family: "jf-openhuninn-2.0";
     font-size: 4em;
     margin: 1% 0;
-   }
-   .leftMB{
+  }
+  .leftMB{
+    display: flex;
+    width: 60%;
+    height: 800px;
+    .upPicture{
+      width: 100%;
+      height: 100%;
+      background-image: "../assets/img/starBackground.jpg";
 
-   }
+    }
+    .leftDB{
+        display: flex;
+        .left2ItemBox{
+          display: flex;
+          .leftDT{
+
+          }
+          .leftDP{
+
+          }
+        }
+        .middleL{
+
+        }
+        .rightText{
+
+        }
+        .downLine{
+
+        }
+        .downDBox{
+          .aText{
+
+          }
+          .bLine{
+
+          }
+          .cText{
+
+          }
+        }
+    }
+  }
+  .rightMB{
+    width: 40%;
+    .rightUC{
+
+    }
+    .rightDP{
+      
+    }
+  }
 }
 
 //======================新聞容器=======================
@@ -218,17 +288,17 @@ export default{
   line-height: 2.14285714;
   .mw2{
     width: 20%;
-  margin: 15px 0px 20px 0;
-  border: none;
-  background: url(https://patchwiki.biligame.com/images/ys/8/8e/mz1gtoqtdva8abdii2ynifqdop8o4rm.png) left top/61px no-repeat,url(https://patchwiki.biligame.com/images/ys/e/e1/gtgsayyb94tqn79yv9boed0p9prgksj.png) right top/61px no-repeat,url(https://patchwiki.biligame.com/images/ys/b/bc/svv820vl56foywxu0prhk7rx7rhd9na.png) center 2px/306px no-repeat,#D9D1C8;
-  font-family: inherit;
-  font-size: 18px;
-  height: 38px;
-  line-height: 38px;
-  font-weight: bold;
-  text-align: center;
-  color: #685841;
-  letter-spacing: 1px;
+    margin: 15px 0px 20px 0;
+    border: none;
+    background: url(https://patchwiki.biligame.com/images/ys/8/8e/mz1gtoqtdva8abdii2ynifqdop8o4rm.png) left top/61px no-repeat,url(https://patchwiki.biligame.com/images/ys/e/e1/gtgsayyb94tqn79yv9boed0p9prgksj.png) right top/61px no-repeat,url(https://patchwiki.biligame.com/images/ys/b/bc/svv820vl56foywxu0prhk7rx7rhd9na.png) center 2px/306px no-repeat,#D9D1C8;
+    font-family: inherit;
+    font-size: 18px;
+    height: 38px;
+    line-height: 38px;
+    font-weight: bold;
+    text-align: center;
+    color: #685841;
+    letter-spacing: 1px;
   }
   .mw3{
   margin: 15px 0 10px 0;
