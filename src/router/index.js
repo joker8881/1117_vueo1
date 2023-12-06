@@ -64,6 +64,32 @@ const router = createRouter({
       name: 'ProvideandInject',
       component: () => import('../views/ProvideandInject.vue')
     },
+    {
+      path: '/User/:userId',
+      name: 'User',
+      component: () => import('../views/User.vue'),
+      props:true
+    },
+    {
+      path: '/RouteFam',
+      name: 'RouteFam',
+      component: () => import('../views/RouteFam.vue'),
+      children:[
+        {
+          path:'RouteChild1',
+          component:() => import ('../components/RouteChild1.vue')
+        },
+        {
+          path:'RouteChild2',
+          component:() => import ('../components/RouteChild2.vue')
+        },
+      ]
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: () => import('../views/NotFound.vue'),
+    },
   ]
 })
 

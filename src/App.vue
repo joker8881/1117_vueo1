@@ -18,7 +18,7 @@ export default {
 </script>
 
 <template class="body">
-  <div class="hbox">
+  <div class="hbox mouse">
     <button class="btn" type="button" @click="this.a()" style="position: fixed;left: 5px;top: 5px;">按我</button>
   <div class="header" :class="{ccb:b}">
     <Header />
@@ -49,7 +49,7 @@ export default {
     left: 0;
     right: 0;
     overflow: hidden;
-    width: 15vh;
+    width: 15vw;
     height: 100vh;
   }
   
@@ -69,5 +69,8 @@ export default {
   background-color: bisque;
   font-family: 'OradanoGSRR';
 }
+}
+.mouse{
+  cursor: url("./assets/cur/STMC_Genshin_01_Normal.cur"), default;
 }
 </style>

@@ -5,7 +5,7 @@ import counter from '../stores/counter';
 export default{
     data(){
         return{
-
+            arr:["aaa","bbb","ccc"]
         }
     },
     components:{
@@ -31,9 +31,9 @@ export default{
         <RouterLink to="/props" class="a" :class="{'cass': this.location === 10}">props</RouterLink>
         <RouterLink to="/DataFlow" class="a" :class="{'cass': this.location === 11}">DataFlow</RouterLink>
         <RouterLink to="/ProvideandInject" class="a" :class="{'cass': this.location === 12}">ProvideandInject</RouterLink>
+        <RouterLink v-for="(i,k) in arr" :to="`/User/${i}`" class="a" :class="{'cass': this.location === i}">User {{i}}</RouterLink>
+        <RouterLink :to="`/RouteFam`" class="a" :class="{'cass': this.location === 14}">User {{i}}</RouterLink>
     </div>
-    <!-- <p>{{ location }}</p>
-    <p>{{ locationInfo }}</p> -->
 </template>
 
 <style scoped lang="scss">
