@@ -18,7 +18,7 @@ export default {
 </script>
 
 <template class="body">
-  <div class="hbox">
+  <div class="hbox mouse">
     <button class="btn" type="button" @click="this.a()" style="position: fixed;left: 5px;top: 5px;">按我</button>
   <div class="header" :class="{ccb:b}">
     <Header />
@@ -68,5 +68,8 @@ export default {
   z-index: 5;
   background-color: bisque;
 }
+}
+.mouse{
+  cursor: url("./assets/cur/STMC_Genshin_01_Normal.cur"), default;
 }
 </style>
