@@ -19,6 +19,7 @@ export default {
 
 <template class="body">
   <div class="hbox mouse">
+    <img src="./assets/img/adventureCard.ong" alt="">
     <button class="btn" type="button" @click="this.a()" style="position: fixed;left: 5px;top: 5px;">按我</button>
   <div class="header" :class="{ccb:b}">
     <Header />
@@ -67,7 +68,7 @@ export default {
   left: 20px;
   z-index: 5;
   background-color: bisque;
-  font-family: 'OradanoGSRR';
+  font-family: 'jf-openhuninn-2.0';
 }
 }
 .mouse{

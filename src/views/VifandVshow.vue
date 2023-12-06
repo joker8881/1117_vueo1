@@ -8,7 +8,7 @@ export default{
             cola:false,
             cars:2,
             house:0,
-            show:flase
+            show:false,
         }
     },
     methods:{

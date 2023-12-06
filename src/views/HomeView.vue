@@ -1,7 +1,7 @@
 <script>
 import { mapState,mapActions } from 'pinia'
 import counter from '../stores/counter'
-import s from '../assets/a/starNight.jpg'
+// import s from '../assets/a/'
 export default{
     data(){
       return{
@@ -55,7 +55,9 @@ export default{
       <!-- <p class="mw2" @click="">千日紅</p> -->
       <!-- <p class="mw3">收集品</p> -->
       <div class="leftMB">
+        <!-- <img src="../assets/img/furina.png" alt=""> -->
         <div class="upPicture"></div>
+        <p class="upPicture"></p>
       </div>
     </div>
   </div>
@@ -232,7 +234,7 @@ export default{
     .upPicture{
       width: 100%;
       height: 100%;
-      background-image: "../assets/a/starNight.jpg";
+      background-image: url('./assets/img/Quest.png')
 
     }
     .leftDB{
