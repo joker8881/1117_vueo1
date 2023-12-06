@@ -49,7 +49,7 @@ export default {
     left: 0;
     right: 0;
     overflow: hidden;
-    width: 15vh;
+    width: 15vw;
     height: 100vh;
   }
   
