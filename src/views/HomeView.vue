@@ -1,7 +1,7 @@
 <script>
 import { mapState,mapActions } from 'pinia'
 import counter from '../stores/counter'
-import s from '../assets'
+import s from '../assets/a/starNight.jpg'
 export default{
     data(){
       return{
@@ -232,7 +232,7 @@ export default{
     .upPicture{
       width: 100%;
       height: 100%;
-      background-image: "../assets/img/starNight.jpg";
+      background-image: "../assets/a/starNight.jpg";
 
     }
     .leftDB{
