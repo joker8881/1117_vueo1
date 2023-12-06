@@ -1,7 +1,7 @@
 <script>
 import { mapState,mapActions } from 'pinia'
 import counter from '../stores/counter'
-// import s from '../assets/a/'
+// import s from '../assets/img/news.jpg'
 export default{
     data(){
       return{
@@ -24,7 +24,8 @@ export default{
 </script>
 
 <template>
-  <div class="main mw-content-text">
+  <div class="background">
+    <div class="main mw-content-text">
     <div class="title">
       <div class="upsmall">
         <p class="upsmallL">左邊小元素</p>
@@ -57,9 +58,9 @@ export default{
       <div class="leftMB">
         <!-- <img src="../assets/img/furina.png" alt=""> -->
         <div class="upPicture"></div>
-        <p class="upPicture"></p>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -234,7 +235,8 @@ export default{
     .upPicture{
       width: 100%;
       height: 100%;
-      background-image: url('./assets/img/Quest.png')
+      background-image: url('../assets/img/Quest.png');
+      background-repeat: no-repeat;
 
     }
     .leftDB{
@@ -283,6 +285,8 @@ export default{
 
 //======================新聞容器=======================
 .mw-content-text {
+  width: 95%;
+  margin: 0 2.5%;
   padding: 2em 4em 5em 4em;
   background: url(https://patchwiki.biligame.com/images/ys/c/cb/2s5wzhvgcq8t8gsw1b0xvks0haiaxrx.png) left top/118px no-repeat,url(https://patchwiki.biligame.com/images/ys/5/50/resfhdf0vgvhqpo85alolzppqiabtsv.png) left top/45px no-repeat,url(https://patchwiki.biligame.com/images/ys/c/c9/n0fkujsbg9dswqbe66zbiemaddo84xj.png) right top/45px no-repeat,url(https://patchwiki.biligame.com/images/ys/9/9f/gous4mcm5zt6ru5yxviighe5tyem64q.png) left bottom/45px no-repeat,url(https://patchwiki.biligame.com/images/ys/6/67/7z2k7wx820zya6wz0m563sjaykmqv4u.png) right bottom/45px no-repeat,url(https://patchwiki.biligame.com/images/ys/2/2a/f5ogmdvyb04dsfcy3kk5ne8jud38l6j.png) left top/45px repeat-x,url(https://patchwiki.biligame.com/images/ys/b/b3/3vsmvlo8qo6192b89jmoqxvj5fpol6u.png) left bottom/45px repeat-x,url(https://patchwiki.biligame.com/images/ys/4/4e/tafd5352ydnp0l9du0o3lcjczvfclnp.png) left top/19px repeat-y,url(https://patchwiki.biligame.com/images/ys/2/23/etuw92oibr0h0j4hyzly1epi69cz5zh.png) right top/19px repeat-y,#F8F3EF;
   border-radius: 6px;
@@ -315,5 +319,8 @@ export default{
   color: #685841;
   letter-spacing: 1px;
   }
+}
+.background{
+  background-image: url("../assets/img/news.jpg");
 }
 </style>

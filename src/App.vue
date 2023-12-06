@@ -19,8 +19,8 @@ export default {
 
 <template class="body">
   <div class="hbox mouse">
-    <img src="./assets/img/adventureCard.ong" alt="">
-    <button class="btn" type="button" @click="this.a()" style="position: fixed;left: 5px;top: 5px;">按我</button>
+    <div class="btn" :class="{bC:b}" @click="this.a()"></div>
+    <!-- <button class="btn" type="button" @click="this.a()" style="position: fixed;left: 5px;top: 5px;">按我</button> -->
   <div class="header" :class="{ccb:b}">
     <Header />
   </div>
@@ -41,7 +41,7 @@ export default {
   overflow: hidden;
   z-index: 1;
   &:hover{
-    width: 25vw;
+    width: 36vw;
   }
   height: 0vh;
 }
@@ -50,7 +50,7 @@ export default {
     left: 0;
     right: 0;
     overflow: hidden;
-    width: 15vw;
+    width: 6vw;
     height: 100vh;
   }
   
@@ -62,13 +62,39 @@ export default {
 .ccc{
   filter: blur(5px);
 }
+// .btn{
+//   position: fixed;
+//   width: 96px;
+//   height: 92px;
+//   top: 20px;
+//   left: 1px;
+//   z-index: 5;
+//   // background-color: rgb(163, 162, 160);
+//   font-family: 'jf-openhuninn-2.0';
+//   border: none;
+// }
 .btn{
   position: fixed;
+  width: 96px;
+  height: 92px;
   top: 20px;
   left: 20px;
   z-index: 5;
-  background-color: bisque;
+  // background-color: rgb(163, 162, 160);
+  background-image: url("./assets/img/Paimon.png");
+  background-repeat: no-repeat;
+  background-size: contain;
   font-family: 'jf-openhuninn-2.0';
+  border: none;
+}
+.bC{
+  width: 56px;
+  height: 52px;
+  background-image: url("./assets/img/Back.png");
+  background-repeat: no-repeat;
+  background-size:fill;
+  font-family: 'jf-openhuninn-2.0';
+  border: none;
 }
 }
 .mouse{
