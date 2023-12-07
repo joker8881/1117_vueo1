@@ -40,9 +40,10 @@ export default{
           <p class="downleftR"></p>
         </div>
         <div class="noneline"></div>
-        <h1 class="h1t">神秘客現身，行善不求回報</h1>
+        <h1 class="h1t">白髮狼人現身於幽林霧道</h1>
       </div>
-      <div class="container">
+      <div class="acbox">
+
         <!-- <p class="mw2">千日紅</p> -->
         <div class="leftMB">
           <div class="upPicture"></div>
@@ -50,12 +51,22 @@ export default{
               <div class="left2ItemBox">
                 <div class="leftDT">
                   <p class="mw2">千日紅</p>
-                  <p class="leftDTT">sssdasdsdasddasdsadddddddddddddddddddddddddddddddddddddddddddddddddddd</p>
+                  <p class="leftDTT">穿越提瓦特的冒險者千日紅，原本是居住在異世界的園藝師。不小心被朋友推到這個世界目前離不開。<br>
+                    　從2.3版本不小跌進來之後不知不覺也玩了快兩年多。<br>
+                    　我抽卡的原則就是「Ｏ你娘抽爆」<br>
+                    　沒錯，就是Ｏ你娘塞爆，老子才不管甚麼錢包瘦小三小的，每次抽卡就是一二命起跳。小保抽到大保，大保抽到第二隻為止。武器也買一送一，跟把整個錢包的錢全送給米哈遊沒兩樣。<br>
+                  </p>
                 </div>
                 <div class="leftDP"></div>
               </div>
               <div class="middleL"></div>
-              <div class="rightText"><p class="rightTextT">sdasdadasdasdasd</p></div>
+              <div class="rightText"><p class="rightTextT">　其實我已經不知道要打什麼了，所以接下來我要用圖片洗版<br>
+                　所以接下來就聊聊我平常都玩些什麼其他的遊戲。<br>
+                　首先我不玩英雄聯盟、APEX、瓦羅蘭、OW2，任何有牽扯技能、團隊競技與運氣要素的遊戲，因為在可預見的未來我應會爆氣。<br>
+                　所以反過來說其實很明白我自己喜愛什麼類型的遊戲，可以深思熟慮，安排事項的策略遊戲<br>
+                　還有就是殭屍，我非常愛的殺殭屍。非常推薦大家都去玩玩Project zomboid，宇宙好玩。<br>
+                　　　最後就是，因為這邊的字會被擋住，所以我猜我打了什麼大家也都看不到，ㄏㄏ。
+              </p></div>
           </div>
           <div class="downLineLL"></div>
           <div class="downDBox">
@@ -65,7 +76,16 @@ export default{
           </div>
         </div>
         <div class="rightMB">
-          <div class="rightUC"></div>
+          <div class="rightUC">
+            <p class="mw2">《神秘的宇宙語言，親訪占星術士莫娜》</p>
+            <p class="textint" style="margin-top: 20px;">
+              　　今日記者夏洛特在楓丹與占星術士莫那的會面，彷彿打開了占星之門，讓我們得以深入了解這神秘的宇宙語言。</p>
+            <p class="textint" style="margin-top: 30px;">　莫娜告訴我「每個人的命座都有其獨特的性格特徵和能量。命座的位置以及星象的交互作用，都會表現出一種獨特的形象，能影響一個人的性格、命運和成就。也是象徵他這個人的存在</p>
+            <p class="textint" style="margin-top: 15px;">　占星術讓我們更好地理解自己，引導我們走向更有意義的生命之路。」但有時人們並不能夠全然接受自己命運中的不幸，她說道。</p>
+            <p class="textint" style="margin-top: 15px;">　「曾經有人叫我幫他算了之後會發生的事情，我也如實告知。但對方卻因為也知道了會發生壞事就對我發脾氣」無奈地抱怨著，但莫娜說自己是不會對占星的結果說謊。</p>
+            <p class="textint" style="margin-top: 15px;">　在她的眼中，占星不僅僅是預測未來、邁向成功的工具，更是一種啟發和指引。莫娜強調，透過對星座的深入瞭解，我們能夠更好地認識自己，發現內在的潛力，並更有針對性地應對生活中的挑戰。或著是像前面所說想辦法去度過困難。她形容命座如同一盞明燈，為我們提供方向。這種命座之光不僅存在於夜空中的星辰，更融入到我們的靈魂深處，成為人生旅途中的忠實指南。</p>
+            <p class="textint" style="margin-top: 20px; width: 80%;">　　這次的訪談讓我深刻體悟到，命座不僅是一種宇宙的語言，更是一種連接我們與宇宙之間的神秘紐帶。感謝此次莫娜的分享，這段命座之旅讓我們能夠更加明瞭宇宙奧秘。</p>
+          </div>
           <p class="mw3">楓丹民眾票選本月最佳歌手！</p>
           <div class="rightDP"></div>
         </div>
@@ -77,12 +97,16 @@ export default{
 
 <style scoped lang="scss">
 .title{
-  height: 23.5%;
+  height: 18.5%;
   
 .h1t{
-    font-family: "jf-openhuninn-2.0";
+    font-family: "OldSong-v1.007";
     font-size: 4em;
     margin: 1% 0;
+    transition: 0.6s;
+    &:hover{
+        transform:scale(1.2,1.2);
+      }
   }
   .kk{
     font-family: 'OradanoGSRR';
@@ -91,7 +115,7 @@ export default{
     line-height: 1em;
     transition: all 1s ease 0s;
     position: relative;
-    &::after{
+    &::before{
         content: "";
         width: 30vw;
         height: 30vh;
@@ -167,7 +191,7 @@ export default{
         background-image: #333;
         }
         &::after{
-        content: "意外！每個人死前都喝過水！！";
+        content: "根據研究指出！每個人死前都喝過水！！";
         text-align: start;
         right: -0px;
         top: -35px;
@@ -256,11 +280,11 @@ export default{
   }
 }
 //======================標題用分隔線======================
-.container{
-    margin: 1% 0 0 0;
-    width: 100%;
-    height: 73.5%;
-    display: flex;
+.acbox{
+  display: flex;
+  width: 100%;
+  height: 80.5%;
+  margin: 1% 0 0 0;
   .leftMB{
     // display: flex;
     width: 60%;
@@ -268,10 +292,13 @@ export default{
     .upPicture{
       width: 100%;
       height: 60%;
-      background-color: #685841;
-      // background-image: url('../assets/img/Quest.png');
-      // background-repeat: no-repeat;
-
+      // background-color: #685841;
+      border: 2px solid rgba(0, 0, 0, 0.212);
+      background-image: url('../assets/img/ama.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      transition: 0.6s;
     }
     .leftDB{
         display: flex;
@@ -287,7 +314,7 @@ export default{
               width: 30vw;
               height: 30vh;
               position: absolute;
-              right: -200px;
+              right: -260px;
               bottom: 0;
               background-image: url("../assets/img/2.gif");
               background-repeat: no-repeat;
@@ -302,12 +329,13 @@ export default{
             .leftDTT{
               padding-top: 2%;
               height: 88%;
-              line-height: 1.7em;
-              font-size: 16px;
+              line-height: 2em;
+              font-size: 1.5em;
               word-wrap:break-word;
+              // word-break: keep-all;
               font-family: "jf-openhuninn-2.0";
               &::first-letter{
-                font-size:4em;
+                font-size:3.4em;
                 float: left;
                 line-height: 0.6em;
                 margin: 0 .2em 0.1em 0;
@@ -318,7 +346,11 @@ export default{
             margin: 0 auto;
             height: 40vh;
             width: 40vh;
-            background-color: #685841;
+            // background-color: #685841;
+            background-image: url("../assets/img/5.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
             position: relative;
           }
         }
@@ -332,9 +364,11 @@ export default{
           width: 48%;
           height: 100%;
           text-align: start;
-          padding-right: 6%;
+          padding-right: 3%;
           .rightTextT{
-            font-family: "jf-openhuninn-2.0"
+            font-family: "jf-openhuninn-2.0";
+            font-size: 1.5em;
+            word-wrap:break-word;
           }
         }
     }
@@ -379,23 +413,46 @@ export default{
     margin-left: 2%;
     .rightUC{
       height: 65%;
-      background-color: #66574A;
+      // display: flex;
+      // background-color: #66574A;
+      position: relative;
+      &::after{
+        content: "";
+        width: 20vw;
+        height: 20vh;
+        position: absolute;
+        right: -120px;
+        bottom: 40px;
+        background-image: url("../assets/img/pai1-26/pai24/s-write.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+      }
+      .textint{
+        margin: 0;
+        text-align: start;
+        font-size: 1.2em;
+        font-family: "jf-openhuninn-2.0";
+      }
     }
     .rightDP{
       height: 30%;
       margin-top: 5%;
-      background-image: url("../assets/img/furina/furinaicon.PNG");
-      background-size: contain;
+      background-image: url("../assets/img/furina/furinaicon.png");
+      background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       position: relative;
       transition: 0.8s;
+      border: 2px solid rgba(0, 0, 0, 0.212);
       &:hover{
         background-image: url("../assets/img/rick.gif");
+        transform:scale(1.2,1.2);
       }
     }
   }
 }
+
 .downEndline{
       margin-top: 2%;
       margin: 5px 0px 0 0px;
@@ -441,6 +498,10 @@ export default{
     text-align: center;
     color: #685841;
     letter-spacing: 1px;
+    transition: 0.6s;
+    &:hover{
+        transform:scale(1.1,1.1);
+      }
   }
   .mw3{
   margin: 15px 0 10px 0;

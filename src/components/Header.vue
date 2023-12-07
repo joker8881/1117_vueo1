@@ -66,6 +66,7 @@ export default{
             background-position: center;
             &:hover{
                 background-image: url("../assets/img/adventureCard2.png");
+                transform:scale(1.4,1.4);
             }
         }
         .picture2{
@@ -79,6 +80,7 @@ export default{
             background-position: center;
             &:hover{
                 background-image: url("../assets/img/ProudB.png");
+                transform:scale(1.4,1.4);
             }
         }
         .picture3{
@@ -92,6 +94,7 @@ export default{
             background-position: center;
             &:hover{
                 background-image: url("../assets/img/Gacha2.png");
+                transform:scale(1.4,1.4);
             }
         }
         .a{
@@ -109,7 +112,8 @@ export default{
             position: relative;
             &:hover{
                 background-color: gainsboro;
-                color:darkslategray
+                color:darkslategray;
+                transform:scale(1.2,1.2);
             }
         }
     }
