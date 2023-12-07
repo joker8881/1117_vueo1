@@ -90,6 +90,11 @@ const router = createRouter({
       name: 'NotFound',
       component: () => import('../views/NotFound.vue'),
     },
+    {
+      path: '/Vslot',
+      name: 'Vslot',
+      component: () => import('../views/Vslot.vue'),
+    },
   ]
 })
 

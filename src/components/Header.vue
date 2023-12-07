@@ -43,6 +43,7 @@ export default{
         <div class="box" style="margin-top: 15px;"><div class="picture3" ></div><RouterLink to="/ProvideandInject" class="a" :class="{'cass': this.location === 12}">ProvideandInject</RouterLink></div>
         <div class="box" style="margin-top: 15px;"><div class="picture3" ></div><RouterLink v-for="(i,k) in arr" :to="`/User/${i}`" class="a" :class="{'cass': this.location === i}">User {{i}}</RouterLink></div>
         <div class="box" style="margin-top: 15px;"><div class="picture3" ></div><RouterLink :to="`/RouteFam`" class="a" :class="{'cass': this.location === 14}">User {{i}}</RouterLink></div>
+        <div class="box" style="margin-top: 15px;"><div class="picture3" ></div><RouterLink :to="`/Vslot`" class="a" :class="{'cass': this.location === 15}">Vslot {{i}}</RouterLink></div>
     </div>
 </template>
 

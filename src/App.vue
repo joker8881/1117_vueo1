@@ -5,6 +5,11 @@ export default {
     data() {
         return {
           b:false,
+          x:0,
+          y:60,
+          xt:false,
+          yt:false,
+          yr:180
         };
     },
     components: { Header },
@@ -12,12 +17,44 @@ export default {
     a(){
       this.b=!this.b;
       console.log(this.b)
+    },
+    e(){
+      setInterval(( () => this.c()), 50);
+    },
+    c(){
+      if(this.xt ==false){
+        this.x++
+      } else{
+        this.x--
+      }
+      if(this.yt == false){
+        this.y++
+      }else{
+        this.y--
+      }
+      if(this.x>92){
+        this.xt=true
+        this.yr=0
+      } else if(this.x < 0){
+        this.xt=false
+        this.yr=180
+      }
+      if(this.y>90){
+        this.yt=true
+        
+      } else if(this.y < -5){
+        this.yt=false
+      }
     }
     },
+    mounted(){
+      this.e()
+    }
   }
 </script>
 
 <template class="body">
+  <div class="sprite-bulin" :style="`transform: translate3d(${this.x}vw, ${this.y}vh, 0px) rotateY(${this.yr}deg);`"></div>
   <div class="hbox mouse">
     <div class="btn" :class="{bC:b}" @click="this.a()"></div>
     <!-- <button class="btn" type="button" @click="this.a()" style="position: fixed;left: 5px;top: 5px;">按我</button> -->
@@ -39,7 +76,7 @@ export default {
   transition: 0.6s;
   width: 0;
   overflow: hidden;
-  z-index: 1;
+  z-index: 5;
   &:hover{
     width: 36vw;
   }
@@ -79,7 +116,7 @@ export default {
   height: 92px;
   top: 20px;
   left: 20px;
-  z-index: 5;
+  z-index: 6;
   // background-color: rgb(163, 162, 160);
   background-image: url("./assets/img/Paimon.png");
   background-repeat: no-repeat;
@@ -99,5 +136,18 @@ export default {
 }
 .mouse{
   cursor: url("./assets/cur/STMC_Genshin_01_Normal.cur"), default;
+}
+
+.sprite-bulin {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  width: 130px;
+  height: 130px;
+  background-image: url("./assets/img/1.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 2;
 }
 </style>
