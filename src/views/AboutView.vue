@@ -302,7 +302,7 @@ export default{
               width: 30vw;
               height: 30vh;
               position: absolute;
-              right: -550px;
+              right: -450px;
               bottom: 0;
               background-image: url("../assets/img/pin.png");
               background-repeat: no-repeat;
@@ -409,7 +409,7 @@ export default{
         width: 20vw;
         height: 20vh;
         position: absolute;
-        right: 380px;
+        right: 300px;
         bottom: -30px;
         background-image: url("../assets/img/hue.gif");
         background-repeat: no-repeat;
@@ -466,7 +466,7 @@ export default{
 //======================新聞容器=======================
 .mw-content-text {
   width: 95%;
-  height: 250vh;
+  height: 360vh;
   margin: 0 2.5%;
   padding: 2em 4em 5em 4em;
   background: url(https://patchwiki.biligame.com/images/ys/c/cb/2s5wzhvgcq8t8gsw1b0xvks0haiaxrx.png) left top/118px no-repeat,url(https://patchwiki.biligame.com/images/ys/5/50/resfhdf0vgvhqpo85alolzppqiabtsv.png) left top/45px no-repeat,url(https://patchwiki.biligame.com/images/ys/c/c9/n0fkujsbg9dswqbe66zbiemaddo84xj.png) right top/45px no-repeat,url(https://patchwiki.biligame.com/images/ys/9/9f/gous4mcm5zt6ru5yxviighe5tyem64q.png) left bottom/45px no-repeat,url(https://patchwiki.biligame.com/images/ys/6/67/7z2k7wx820zya6wz0m563sjaykmqv4u.png) right bottom/45px no-repeat,url(https://patchwiki.biligame.com/images/ys/2/2a/f5ogmdvyb04dsfcy3kk5ne8jud38l6j.png) left top/45px repeat-x,url(https://patchwiki.biligame.com/images/ys/b/b3/3vsmvlo8qo6192b89jmoqxvj5fpol6u.png) left bottom/45px repeat-x,url(https://patchwiki.biligame.com/images/ys/4/4e/tafd5352ydnp0l9du0o3lcjczvfclnp.png) left top/19px repeat-y,url(https://patchwiki.biligame.com/images/ys/2/23/etuw92oibr0h0j4hyzly1epi69cz5zh.png) right top/19px repeat-y,#F8F3EF;

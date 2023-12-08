@@ -31,6 +31,7 @@ export default{
         <div class="box"><p class="mw3">冒險之路</p></div>
         <div class="box" style="margin-top: 120px;"><div class="picture" @click="home()"></div><RouterLink to="/" class="a" :class="{'cass': this.location === 1}" >Home</RouterLink></div>
         <div class="box" style="margin-top: 15px;"><div class="picture2" @click="about()"></div><RouterLink to="/about" class="a" :class="{'cass': this.location === 2}">About</RouterLink></div>
+        <div class="box" style="margin-top: 15px;"><div class="picture3" ></div><RouterLink :to="`/login`" class="a" :class="{'cass': this.location === 16}">login</RouterLink></div>
         <div class="box" style="margin-top: 15px;"><div class="picture3" @click="c()"></div><RouterLink to="/VtextAndVmodel" class="a" :class="{'cass': this.location === 3}">VtextAndVmodel</RouterLink></div>
         <div class="box" style="margin-top: 15px;"><div class="picture3" ></div><RouterLink to="/Vfor" class="a" :class="{'cass': this.location === 4}">Vfor</RouterLink></div>
         <div class="box" style="margin-top: 15px;"><div class="picture3" ></div><RouterLink to="/Von" class="a" :class="{'cass': this.location === 5}">Von</RouterLink></div>
@@ -43,7 +44,7 @@ export default{
         <div class="box" style="margin-top: 15px;"><div class="picture3" ></div><RouterLink to="/ProvideandInject" class="a" :class="{'cass': this.location === 12}">ProvideandInject</RouterLink></div>
         <div class="box" style="margin-top: 15px;"><div class="picture3" ></div><RouterLink v-for="(i,k) in arr" :to="`/User/${i}`" class="a" :class="{'cass': this.location === i}">User {{i}}</RouterLink></div>
         <div class="box" style="margin-top: 15px;"><div class="picture3" ></div><RouterLink :to="`/RouteFam`" class="a" :class="{'cass': this.location === 14}">User {{i}}</RouterLink></div>
-        <div class="box" style="margin-top: 15px;"><div class="picture3" ></div><RouterLink :to="`/Vslot`" class="a" :class="{'cass': this.location === 15}">Vslot {{i}}</RouterLink></div>
+        <div class="box" style="margin-top: 15px;"><div class="picture3" ></div><RouterLink :to="`/Vslot`" class="a" :class="{'cass': this.location === 15}">Vslot</RouterLink></div>
     </div>
 </template>
 
