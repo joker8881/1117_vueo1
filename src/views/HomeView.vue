@@ -19,6 +19,7 @@ export default{
     },
     mounted(){
       this.setLocation(1)
+      console.log(localStorage.getItem("joker8881"))
     },
 }
 </script>

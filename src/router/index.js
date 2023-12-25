@@ -110,6 +110,41 @@ const router = createRouter({
       name: 'count',
       component: () => import('../views/count.vue')
     },
+    {
+      path: '/quiz',
+      name: 'quizFrontShow',
+      component: () => import('../views/Quiz/QuizFrontShow.vue')
+    },
+    {
+      path: '/quizAnswer',
+      name: 'quizAnswer',
+      component: () => import('../views/Quiz/QuziFrontAnswer.vue')
+    },
+    {
+      path: '/quizAnswerCheck',
+      name: 'quizAnswerCheck',
+      component: () => import('../views/Quiz/QuziFrontAnswerCheck.vue')
+    },
+    {
+      path: '/quizStatic',
+      name: 'quizStatic',
+      component: () => import('../views/Quiz/QuziFrontStatic.vue')
+    },
+    {
+      path: '/quizBackShow',
+      name: 'quizBackShow',
+      component: () => import('../views/Quiz/QuizB/QuizBackShow.vue')
+    },
+    {
+      path: '/quizBackNewQuiz',
+      name: 'quizBackNewQuiz',
+      component: () => import('../views/Quiz/QuizB/QuizBackNewQuiz.vue')
+    },
+    {
+      path: '/quizBackNewQuestion',
+      name: 'quizBackNewQuestion',
+      component: () => import('../views/Quiz/QuizB/QuizBackNewQuestion.vue')
+    },
   ]
 })
 

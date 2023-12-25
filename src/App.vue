@@ -10,7 +10,7 @@ export default {
           xt:false,
           yt:false,
           yr:180,
-          play:true,
+          play:false,
         };
     },
     components: { Header },
@@ -53,16 +53,17 @@ export default {
     }
     },
     mounted(){
-      this.e()
-      console.log(this.play)
+      // this.e()
+      // console.log(this.play)
+      // this.play =true
     }
   }
 </script>
 
 <template class="body">
-  <video src="./assets/img/10s.mp4" autoplay v-if="this.play ==true" style="width: 100vw;"></video>
-  <button @click="videoP" class="vediox mw2" v-if="this.play ==true">原神，啟動！</button>
-  <div class="sprite-bulin" :style="`transform: translate3d(${this.x}vw, ${this.y}vh, 0px) rotateY(${this.yr}deg);`" v-if="this.play ==false"></div>
+  <!-- <video src="./assets/img/10s.mp4" autoplay v-if="this.play ==true" style="width: 100vw;"></video>
+  <button @click="videoP" class="vediox mw2" v-if="this.play ==true">原神，啟動！</button> -->
+  <!-- <div class="sprite-bulin" :style="`transform: translate3d(${this.x}vw, ${this.y}vh, 0px) rotateY(${this.yr}deg);`" v-if="this.play ==false"></div> -->
   <div class="hbox mouse" v-if="this.play ==false">
     <div class="btn" :class="{bC:b}" @click="this.a()"></div>
     <!-- <button class="btn" type="button" @click="this.a()" style="position: fixed;left: 5px;top: 5px;">按我</button> -->
@@ -77,6 +78,7 @@ export default {
 
 <style scoped lang="scss">
 .hbox{
+  height: 100vh;
   .header{
   position: fixed;
   margin: 0;
@@ -101,7 +103,7 @@ export default {
   
 .content{
   width: 100vw;
-  height: 85vh;
+  height: 100vh;
   text-align: center;
   }
 .ccc{
@@ -120,8 +122,8 @@ export default {
 // }
 .btn{
   position: fixed;
-  width: 96px;
-  height: 92px;
+  width: 66px;
+  height: 62px;
   top: 20px;
   left: 20px;
   z-index: 6;
@@ -146,9 +148,9 @@ export default {
   border: none;
 }
 }
-.mouse{
-  cursor: url("./assets/cur/STMC_Genshin_01_Normal.cur"), default;
-}
+// .mouse{
+//   cursor: url("./assets/cur/STMC_Genshin_01_Normal.cur"), default;
+// }
 
 .sprite-bulin {
   position: fixed;

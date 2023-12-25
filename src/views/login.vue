@@ -1,5 +1,7 @@
 <script>
 import { RouterLink, RouterView } from "vue-router";
+import { mapState,mapActions } from 'pinia'
+import counter from '../stores/counter'
 export default {
   data() {
     return{
@@ -23,6 +25,7 @@ export default {
     RouterLink,
   },
   methods:{
+    ...mapActions(counter,["getLocation","setLocation"]),
     log(){
       if(this.cBox == true){
         localStorage.setItem("keep","keep")
@@ -75,6 +78,7 @@ export default {
     localStorage.removeItem("keep")
     localStorage.removeItem("setacc")
     localStorage.removeItem("logacc")
+    this.setLocation(16)
   }
 };
 </script>
@@ -109,14 +113,14 @@ export default {
 .box{
   height: 80%;
   width: 40%;
-  margin: 20% auto 0 auto 0 ;
+  margin: 0 auto 0 auto ;
   // align-self: center;
   // align-items: center;
   background-color: bisque;
   border-radius: 15px;
   .textT{
     font-size: 2em;
-    margin-top: 20px;
+    // margin-top: 20px;
   }
   .textL{
     text-align: start;

@@ -31,7 +31,8 @@ export default{
         <div class="box"><p class="mw3">冒險之路</p></div>
         <div class="box" style="margin-top: 120px;"><div class="picture" @click="home()"></div><RouterLink to="/" class="a" :class="{'cass': this.location === 1}" >Home</RouterLink></div>
         <div class="box" style="margin-top: 15px;"><div class="picture2" @click="about()"></div><RouterLink to="/about" class="a" :class="{'cass': this.location === 2}">About</RouterLink></div>
-        <div class="box" style="margin-top: 15px;"><div class="picture3" ></div><RouterLink :to="`/login`" class="a" :class="{'cass': this.location === 16}">login</RouterLink></div>
+        <div class="box" style="margin-top: 15px;"><div class="picture3" ></div><RouterLink :to="`/login`" class="a" :class="{'cass': this.location === 16}">記帳表單</RouterLink></div>
+        <div class="box" style="margin-top: 15px;"><div class="picture3" ></div><RouterLink :to="`/quiz`" class="a" :class="{'cass': this.location === 17}">動態問卷</RouterLink></div>
         <div class="box" style="margin-top: 15px;"><div class="picture3" @click="c()"></div><RouterLink to="/VtextAndVmodel" class="a" :class="{'cass': this.location === 3}">VtextAndVmodel</RouterLink></div>
         <div class="box" style="margin-top: 15px;"><div class="picture3" ></div><RouterLink to="/Vfor" class="a" :class="{'cass': this.location === 4}">Vfor</RouterLink></div>
         <div class="box" style="margin-top: 15px;"><div class="picture3" ></div><RouterLink to="/Von" class="a" :class="{'cass': this.location === 5}">Von</RouterLink></div>
@@ -111,10 +112,11 @@ export default{
             transition: 0.4s;
             color: whitesmoke;
             position: relative;
+            border-radius: 5px;
             &:hover{
                 background-color: gainsboro;
                 color:darkslategray;
-                transform:scale(1.2,1.2);
+                transform:scale(1.1,1.1);
             }
         }
     }
