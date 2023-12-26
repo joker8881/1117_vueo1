@@ -4,6 +4,7 @@ import { RouterLink, RouterView } from "vue-router";
 export default{
     data(){
         return{
+        questionT:"",
         selectT:"",
         currentPage:1,
         itemsPerPage:5,
@@ -12,21 +13,26 @@ export default{
                     number:1,
                     content: "如果你說你愛我",
                     type:"單選",
-                    necessary:"是",
+                    necessary:true,
                     result:"前往"
                 },
                 {
                     number:2,
                     content: "如果你說你愛我",
                     type:"複選",
-                    necessary:"否",
+                    necessary:false,
                     result:"前往"
                 },
             ],
-        packageB:[],
+        packageB:{},
         pageC:"",
         quizName:"AAA",
-
+        a:false,
+        name:"",
+        introduce:"",
+        startdate:"",
+        enddate:"",
+        newQuestion:[],
         }
     },
     components: {
@@ -51,6 +57,39 @@ export default{
                 this.pageC = "你沒有那麼多選項"
             } 
         },
+        new(){
+            this.newQuestion.push(this.questionT)
+
+        },
+        confirmB(){
+            this.packageB.push(this.questionT)
+            let option = packageB.find(item => item.questionT)
+            if (targetObject) {
+                if (!targetObject.type) {
+                // 如果 type 不存在，則初始化為一個空物件
+                    targetObject.type = {};
+                }
+            // 將新的物件加入 type 中
+            Object.assign(targetObject.type, newObject);
+            }
+            console.log(this.packageB)
+            // this.$router.push("/quziBackQuizCheck")
+        }
+    },
+    mounted(){
+        this.packageB = JSON.parse(localStorage.getItem("newquiz"))
+        if (this.packageB != null) {
+            this.name=this.packageB[0]
+            this.introduce=this.packageB[1]
+            this.startdate=this.packageB[2]
+            this.enddate=this.packageB[3]
+            if( this.packageB[4] != null){
+                this.questionT=packageB[4]
+            }
+            
+        }
+        console.log(this.packageB)
+        console.log(this.questionT)
     },
 }
 </script>
@@ -68,7 +107,7 @@ export default{
             <div class="writebox">
                 <div class="namebox">
                     <p class="font name">問題：</p>
-                    <input type="text" name="" id="" class="nameinput" v-model="this.name">
+                    <input type="text" name="" id="" class="nameinput" v-model="this.questionT">
                     <select class="form-select selection" aria-label="Default select example">
                         <option value="1">單選題</option>
                         <option value="2">多選題</option>
@@ -80,8 +119,8 @@ export default{
                 <div class="interducebox">
                     <p class="font name">選項：</p>
                     <div class="interduceI">
-                        <p class="font">多個答案請以：分隔</p>
-                        <textarea name="" id="" cols="30" rows="10" class="interduceinput" v-model="this.introduce"></textarea>
+                        <p class="font">多個答案請以；分隔</p>
+                        <textarea name="" id="" cols="30" rows="10" class="interduceinput" v-model="this.selectT"></textarea>
                     </div>
                 </div>
                 <div class="columT">
@@ -92,9 +131,9 @@ export default{
                     <p class="font end">必填</p>
                     <P class="font result">編輯</P>
                 </div>
-                <div class="colum" v-for="(item, index) in this.searchResult.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)" :key="index">
+                <div class="colum" v-for="(item, index) in this.newQuestion.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)" :key="index">
                     <p class="font number"><input type="checkbox" name="" id=""></p>
-                    <p class="font name">{{ this.searchResult[index].number }}</p>
+                    <p class="font name">{{ ithis.newQuestion }}</p>
                     <p class="font state">{{ this.searchResult[index].content }}</p>
                     <p class="font start">{{ this.searchResult[index].type }}</p>
                     <p class="font end">{{ this.searchResult[index].necessary }}</p>
@@ -128,7 +167,7 @@ export default{
               <div class="rightD">
                         <button type="button"><RouterLink to="/QuizBackNewQuiz">取消</RouterLink></button>
                         <Popper  arrow placement="top" class="root" :content="this.nextmessage">
-                            <button type="button" @click="register">下一頁</button>
+                            <button type="button" @click="confirmB">下一頁</button>
                         </Popper>
                     </div>
             </div>
@@ -161,14 +200,14 @@ export default{
                     width: 15%;
                     margin: 0;
                     font-size: 1.2em;
-                    line-height: 250%;
+                    line-height: 150%;
                     font-family: "jf-openhuninn-2.0";
                 }
                 .labelS{
                     width: 15%;
                     margin: 0;
                     font-size: 1.2em;
-                    line-height: 250%;
+                    line-height: 150%;
                     font-family: "jf-openhuninn-2.0";
                     background-color: white;    
                     border-radius: 3px;

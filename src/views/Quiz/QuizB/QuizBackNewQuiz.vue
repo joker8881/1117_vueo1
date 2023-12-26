@@ -26,7 +26,7 @@ export default{
                     result:"前往"
                 },
             ],
-        packageA:[],
+        packageA:{},
         nextmessage:"",
         }
     },
@@ -46,6 +46,9 @@ export default{
                 this.packageA.push(this.name,this.introduce,this.startdate,this.enddate)
                 console.log(this.packageA)
                 this.$router.push("/quizBackNewQuestion")
+                localStorage.setItem("newquiz",JSON.stringify(this.packageA))
+                // this.allarr = JSON.parse(localStorage.getItem(this.logaccount))
+                
             //     fetch('http://localhost:8080/quiz/create', {
             //     method: 'POST', // 這裡使用POST方法，因為後端是@PostMapping
             //     headers: {
@@ -84,6 +87,14 @@ export default{
         },
     },
     mounted(){
+        this.packageA = JSON.parse(localStorage.getItem("newquiz"))
+        if (this.packageA != null) {
+            this.name=this.packageA[0]
+            this.introduce=this.packageA[1]
+            this.startdate=this.packageA[2]
+            this.enddate=this.packageA[3]
+        }
+        console.log(this.packageA)
         console.log(this.name)
     },
 }

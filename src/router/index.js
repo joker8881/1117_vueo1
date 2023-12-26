@@ -145,6 +145,11 @@ const router = createRouter({
       name: 'quizBackNewQuestion',
       component: () => import('../views/Quiz/QuizB/QuizBackNewQuestion.vue')
     },
+    {
+      path: '/quziBackQuizCheck',
+      name: 'quziBackQuizCheck',
+      component: () => import('../views/Quiz/QuizB/QuziBackQuizCheck.vue')
+    },
   ]
 })
 
