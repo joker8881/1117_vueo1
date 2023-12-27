@@ -46,15 +46,16 @@ export default{
     },
     methods:{
         ...mapActions(counter,["getLocation","setLocation"]),
-        ck() {
-            fetch('http://localhost:8080/api/login', {
+        search() {
+            fetch('http://localhost:8080/quiz/search', {
                 method: 'POST', // 這裡使用POST方法，因為後端是@PostMapping
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    account:'A01',
-                    password:'A123',
+                    quizName:'',
+                    startDate:'',
+                    endDate:'',
                 })
             })
             .then(response => response.json())
@@ -96,7 +97,7 @@ export default{
                 <input type="date" class="searchDayD" name="" id="" v-model="searchStart">
                 <p class="b" >到</p>
                 <input type="date" class="searchDayD" name="" id="" v-model="searchEnd">
-                <button type="button" class="searchB" @click="ck">搜尋</button>
+                <button type="button" class="searchB" @click="search">搜尋</button>
             </div>
         </div>
         <div class="tablebox">

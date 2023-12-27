@@ -4,8 +4,16 @@ import { RouterLink, RouterView } from "vue-router";
 export default{
     data(){
         return{
+        // =================
         questionT:"",
-        selectT:"",
+        type:0,
+        necessary:"",
+        x:[],
+        selection:[],
+        selectionO:[],
+        // ================= 每個問題
+        changeA:["單選題","多選題","簡答題"],
+        // 轉換用陣列
         currentPage:1,
         itemsPerPage:5,
         searchResult:[
@@ -24,15 +32,27 @@ export default{
                     result:"前往"
                 },
             ],
-        packageB:{},
+        packageB:[],
         pageC:"",
         quizName:"AAA",
         a:false,
+        // ====================
         name:"",
         introduce:"",
         startdate:"",
         enddate:"",
+        // quiz借來的值
+        // ====================
         newQuestion:[],
+        questionList:[],
+        selectionT:[], //暫時存放選項的地方，為了要讓選項在下面可以列印出來
+        // ====================
+        currentIndexToDelete:0,
+        currentIndexToChange:0,
+        changeSelection:"",
+        resultT:"前往",
+        cc:[]
+        // 刪除序
         }
     },
     components: {
@@ -42,7 +62,7 @@ export default{
     computed: {
     //計算總頁數
         totalPages() {
-            return Math.ceil(this.searchResult.length / this.itemsPerPage);
+            return Math.ceil(this.questionList.length / this.itemsPerPage);
         },
     },
     methods:{
@@ -57,23 +77,72 @@ export default{
                 this.pageC = "你沒有那麼多選項"
             } 
         },
-        new(){
-            this.newQuestion.push(this.questionT)
-
+        newSlection(){
+            this.selection.push(this.selectionO)
+            console.log(this.selection)
+            this.selectionO = ''
+        },
+        deleteSlection(index){
+            this.selection.splice(index, 1);
+        },
+        newSlectionInBox(){
+            this.changeSelection.push(this.selectionO)
+            console.log(this.changeSelection)
+            this.selectionO = ''
+        },
+        deleteSlectionInBox(index){
+            this.changeSelection.splice(index, 1);
+        },
+        newW(){
+            this.selectionT= []
+            this.selection = this.selection.join(', ')
+            console.log(this.selection)
+            this.selectionT = {
+                index: (this.questionList.length+1),
+                title: this.questionT,
+                type: this.changeA[this.type],
+                necessary: this.necessary,
+                options: this.selection,
+                resultT: this.resultT
+            }
+            this.questionList.push(this.selectionT)
+            console.log(this.selectionT)
+            console.log(this.questionList.length)
+            console.log(this.questionList)
+            this.questionT = ""
+            this.type = 0
+            this.necessary = ""
+            this.selection = []
+            // localStorage.setItem("savemyquiz",JSON.stringify(this.packageA))
         },
         confirmB(){
-            this.packageB.push(this.questionT)
-            let option = packageB.find(item => item.questionT)
-            if (targetObject) {
-                if (!targetObject.type) {
-                // 如果 type 不存在，則初始化為一個空物件
-                    targetObject.type = {};
-                }
-            // 將新的物件加入 type 中
-            Object.assign(targetObject.type, newObject);
-            }
+            this.packageB.questionList = this.questionList
             console.log(this.packageB)
-            // this.$router.push("/quziBackQuizCheck")
+            localStorage.setItem("quizoutCheck",JSON.stringify(this.packageB))
+            this.$router.push("/quziBackQuizCheck")
+            // localStorage.removeItem("keep")
+        },
+        del(index) {
+            this.currentIndexToDelete = index;
+            const pageofindex = (this.currentPage - 1) * this.itemsPerPage +  this.currentIndexToDelete;
+            if (pageofindex >= 0 && pageofindex < this.questionList.length) {
+                this.questionList.splice(pageofindex, 1);
+            }
+        },
+        setNumberOfChage(index){
+            this.currentIndexToChange = index
+            const pageofindex = (this.currentPage - 1) * this.itemsPerPage +  this.currentIndexToChange;
+            this.changeSelection = this.questionList[pageofindex].options.split(', ')
+        },
+        changeS(){
+            const pageofindex = (this.currentPage - 1) * this.itemsPerPage +  this.currentIndexToChange;
+            console.log(pageofindex)
+            if (pageofindex >= 0 && pageofindex < this.questionList.length) {
+                this.questionList[pageofindex].options = this.changeSelection.join(', ');
+                console.log(this.questionList)
+            }
+            console.log(this.selectionT)
+            this.changeSelection = ""
         }
     },
     mounted(){
@@ -83,13 +152,8 @@ export default{
             this.introduce=this.packageB[1]
             this.startdate=this.packageB[2]
             this.enddate=this.packageB[3]
-            if( this.packageB[4] != null){
-                this.questionT=packageB[4]
-            }
-            
         }
         console.log(this.packageB)
-        console.log(this.questionT)
     },
 }
 </script>
@@ -101,6 +165,7 @@ export default{
             <div class="label">
                 <p class="labelT">問卷</p>
                 <p class="labelS">題目</p>
+                <p class="labelT">問卷確認</p>
                 <p class="labelT">問卷回饋</p>
                 <p class="labelT">統計</p>
             </div>
@@ -108,21 +173,24 @@ export default{
                 <div class="namebox">
                     <p class="font name">問題：</p>
                     <input type="text" name="" id="" class="nameinput" v-model="this.questionT">
-                    <select class="form-select selection" aria-label="Default select example">
-                        <option value="1">單選題</option>
-                        <option value="2">多選題</option>
-                        <option value="3">簡答題</option>
+                    <select class="form-select selection" aria-label="Default select example" v-model="this.type">
+                        <option value="0">單選題</option>
+                        <option value="1">多選題</option>
+                        <option value="2">簡答題</option>
                     </select>
-                    <input type="checkbox" name="" id="" style="margin: 0 20px;">
+                    <input type="checkbox" name="" id="" style="margin: 0 20px;" v-model="this.necessary">
                     <p class="font name" style="line-height: 200%;">必填</p>
                 </div>
                 <div class="interducebox">
                     <p class="font name">選項：</p>
-                    <div class="interduceI">
-                        <p class="font">多個答案請以；分隔</p>
-                        <textarea name="" id="" cols="30" rows="10" class="interduceinput" v-model="this.selectT"></textarea>
-                    </div>
+                        <textarea name="" id="" cols="30" rows="10" class="interduceinput" v-model="this.selectionO"></textarea>
                 </div>
+                <div class="seletionBox" v-for="(item, index) in this.selection" :key="index">
+                    <p  style="margin: 0 0 0 18%; text-align: start;">{{ (index+1)+ "　" + item }}</p>
+                    <i class="fa-solid fa-trash-can" @click="deleteSlection(index)" style="margin-left: 5px;margin-top: 2px;"></i>
+                </div>
+                <button type="button" class="font" @click="newSlection" style="height: 5%; border: 1px solid black; border-radius: 4px; margin: 20px 60% 20px 0;">新增選項</button>
+                <button type="button" class="font" @click="newW()" style="height: 5%; border: 1px solid black; border-radius: 4px; margin: 20px 60% 20px 0;">新增問題</button>
                 <div class="columT">
                     <p class="font number"></p>
                     <p class="font name">編號</p>
@@ -131,13 +199,44 @@ export default{
                     <p class="font end">必填</p>
                     <P class="font result">編輯</P>
                 </div>
-                <div class="colum" v-for="(item, index) in this.newQuestion.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)" :key="index">
-                    <p class="font number"><input type="checkbox" name="" id=""></p>
-                    <p class="font name">{{ ithis.newQuestion }}</p>
-                    <p class="font state">{{ this.searchResult[index].content }}</p>
-                    <p class="font start">{{ this.searchResult[index].type }}</p>
-                    <p class="font end">{{ this.searchResult[index].necessary }}</p>
-                    <p class="font result">{{ this.searchResult[index].result }}</p>
+                <div class="colum" v-for="(item, index) in this.questionList.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)" :key="index">
+                    <div class="font number"><i class="fa-solid fa-trash-can" @click="del(index)"></i></div>
+                    <!-- <p class="font number"><input type="checkbox" name="" id=""></p> -->
+                    <p class="font name"># {{ (this.currentPage - 1) * this.itemsPerPage + index + 1 }}</p>
+                    <p class="font state">{{ this.questionList[(this.currentPage - 1) * this.itemsPerPage + index].title }}</p>
+                    <p class="font start">{{ this.questionList[(this.currentPage - 1) * this.itemsPerPage + index].type }}</p>
+                    <!-- <p class="font end">{{ this.searchResult[index].necessary }}</p> -->
+                    <div class="font end"><input type="checkbox" name="" id="" disabled v-model="this.questionList[(this.currentPage - 1) * this.itemsPerPage + index].necessary" style="height: 20px; width: 20px;"></div>
+                    <p class="font result"><button type="button" class="btn btn-primary btmC" data-bs-toggle="modal" data-bs-target="#additem" @click="setNumberOfChage(index)">修改</button></p>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="additem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title a" id="exampleModalLabel">請輸入</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body mbl">
+                                <p class="font boxT">在這裡重新輸入選項</p>
+                                <div class="form-floating mb-3">
+                                    <div class="interduceboxX">
+                                        <p class="font name">選項：</p>
+                                        <!-- <p class="font">多個答案請以：分隔</p> -->
+                                        <textarea name="" id="" cols="30" rows="10" class="interduceinput" v-model="this.selectionO"></textarea>
+                                    </div>
+                                    <div class="seletionBoxB" v-for="(item, index) in this.changeSelection" :key="index">
+                                        <p  style="margin: 0 0 0 18%; text-align: start;">{{ (index+1)+ "　" + item }}</p>
+                                        <i class="fa-solid fa-trash-can" style="margin-left: 10px; margin-top: 5px;" @click="deleteSlectionInBox(index)"></i>
+                                    </div>
+                                    <button type="button" class="font" @click="newSlectionInBox" style="height: 5%; border: 1px solid black; border-radius: 4px; margin: 20px 60% 20px 0;">新增選項</button>
+                                </div>
+                            </div>
+                            <div class="modal-footer" style="justify-content: space-around;">
+                                <button type="button" class="btn btn-primary a" data-bs-dismiss="modal" style="background-color: red;border: none;" @click="changeS()">確認修改</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <nav aria-label="Page navigation">
                     <ul class="pagination justify-content-center">
@@ -165,9 +264,9 @@ export default{
                     </ul>
                 </nav>
               <div class="rightD">
-                        <button type="button"><RouterLink to="/QuizBackNewQuiz">取消</RouterLink></button>
+                        <button type="button" class="font" style="height: 25%; border: 1px solid black; border-radius: 4px; margin-right: 5%;"><RouterLink to="/QuizBackNewQuiz">取消</RouterLink></button>
                         <Popper  arrow placement="top" class="root" :content="this.nextmessage">
-                            <button type="button" @click="confirmB">下一頁</button>
+                            <button type="button" class="font" @click="confirmB" style="height: 25%; border: 1px solid black; border-radius: 4px;">下一頁</button>
                         </Popper>
                     </div>
             </div>
@@ -317,22 +416,22 @@ export default{
                     width: 80%;
                     display: flex;
                     padding: 2% 0;
-                    height: 30%;
+                    height: 15%;
                     .name{
                         text-align: start;
                         height: 20%;
                     }
-                    .interduceI{
-                        width: 70%;
                         .interduceinput{
                         text-align: start;
                         margin-left: 2%;
                         margin-top: 0.5%;
-                        width: 90%;
-                        height: 80%;
+                        width: 80%;
+                        height: 99%;
                         resize: none;
                         }
-                    }
+                }
+                .seletionBox{
+                    display: flex;
                 }
             }
         }
@@ -347,5 +446,16 @@ export default{
     --popper-theme-padding: 32px;
     --popper-theme-box-shadow: 0 6px 30px -6px rgba(0, 0, 0, 0.25);
     font-family: "jf-openhuninn-2.0";
+    }
+    .interduceboxX{
+        display: flex;
+        height: 25%;
+        .interduceinput{
+            height: 25%;
+            resize: none;
+        }
+    }
+    .seletionBoxB{
+        display: flex;
     }
 </style>

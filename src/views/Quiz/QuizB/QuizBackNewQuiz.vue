@@ -10,6 +10,7 @@ export default{
         enddate:"",
         currentPage:1,
         itemsPerPage:10,
+        contaionQuestion:[""],
         searchResult:[
                 {
                     number:1,
@@ -43,7 +44,14 @@ export default{
             if(this.acc != "" && this.introduce != "" && this.startdate != "" && this.enddate != "" 
             && this.enddate.replace("=","") > this.startdate.replace("=","")){
                 this.packageA = []
-                this.packageA.push(this.name,this.introduce,this.startdate,this.enddate)
+                this.packageA = 
+                {
+                    name: this.name,
+                    description: this.introduce,
+                    startDate: this.startdate,
+                    endDate: this.enddate,
+                    questionList:this.contaionQuestion
+                }
                 console.log(this.packageA)
                 this.$router.push("/quizBackNewQuestion")
                 localStorage.setItem("newquiz",JSON.stringify(this.packageA))
