@@ -9,6 +9,7 @@ export default{
         searchText:"",
         searchStart:"",
         searchEnd:"",
+        localDate:"",
         currentPage:1,
         itemsPerPage:10,
         searchResult:[
@@ -78,9 +79,16 @@ export default{
                 this.pageC = "你已經到第一頁了"
               } 
       },
+      getLocalDate() {
+      const now = new Date();
+      // 获取西元年-月-日格式
+      this.localDate = now.toLocaleDateString('en-US'); // 根据需要设置不同的语言环境
+      console.log(this.localDate)
+    },
     },
     mounted(){
       this.setLocation(17)
+      this.getLocalDate()
     },
 }
 </script>
