@@ -97,10 +97,10 @@ export default{
     mounted(){
         this.packageA = JSON.parse(localStorage.getItem("newquiz"))
         if (this.packageA != null) {
-            this.name=this.packageA[0]
-            this.introduce=this.packageA[1]
-            this.startdate=this.packageA[2]
-            this.enddate=this.packageA[3]
+            this.name=this.packageA.name
+            this.introduce=this.packageA.description
+            this.startdate=this.packageA.startDate
+            this.enddate=this.packageA.endDate
         }
         console.log(this.packageA)
         console.log(this.name)
@@ -136,9 +136,9 @@ export default{
                         <input type="date" name="" id="" class="timeinput" v-model="this.enddate">
                     </div>
                     <div class="rightD">
-                        <button type="button"><RouterLink to="/quizBackShow">取消</RouterLink></button>
+                        <button class="font" type="button" style="width: 70px;border: 1px solid black; border-radius: 4px; margin-right: 20px;"><RouterLink to="/quizBackShow">取消</RouterLink></button>
                         <Popper  arrow placement="top" class="root" :content="this.nextmessage">
-                            <button type="button" @click="register">下一頁</button>
+                            <button class="font" type="button" @click="register" style="border: 1px solid black; border-radius: 4px;">下一頁</button>
                         </Popper>
                     </div>
                 </div>
@@ -250,7 +250,7 @@ export default{
                     }
                     .rightD{
                         display: flex;
-                        margin-left: 80%;
+                        margin-left: 76%;
                     }
                 }
             }

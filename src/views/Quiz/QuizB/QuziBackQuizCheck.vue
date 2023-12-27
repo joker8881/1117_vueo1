@@ -16,7 +16,7 @@ export default{
         currentPage:1,
         itemsPerPage:3,
         sendout:{},
-        c:[],
+        showform:[],
         }
     },
     components: {
@@ -80,10 +80,22 @@ export default{
         this.enddate = this.packageCheck.endDate
         this.questionList = this.packageCheck.questionList
         this.dataLoaded = true
-        this.packageCheck.questionList.forEach(element => {
-            this.packageCheck.questionList.options = this.packageCheck.questionList.options[element].split(', ')
-        });
-        console.log(this.packageCheck.questionList.options)
+        for(let i = 0 ; i < this.packageCheck.questionList.length ; i++){
+            this.showform.push(this.packageCheck.questionList[i])
+        }
+        // this.packageCheck.questionList.forEach(element => {
+        //     // console.log(element)
+        //     this.showform.push(element)
+        // });
+        console.log(this.showform)
+        for(let i = 0 ; i < this.showform.length ; i++){
+            if(this.showform[i].options == ""){
+
+            } else {
+                this.showform[i].options = this.showform[i].options.split(', ')
+            }
+        }
+        console.log(this.showform)
     }
 }
 </script>
@@ -110,10 +122,14 @@ export default{
                 </div>
                 <div class="font quizList">
                     <div class="columBox" v-if="dataLoaded">
-                        <div class="colum" v-for="(item, index) in this.packageCheck.questionList.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)" :key="index">
-                            <p class="font questionName">{{ this.packageCheck.questionList[index].title }}</p>
-                            <p class="font questionSlection" v-for="(item, x) in this.packageCheck.questionList[index].options.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)" :key="x">{{ (x+1) + ". " + this.packageCheck.questionList[index].options[x] }}</p>
-                            <p>{{ this.packageCheck.questionList }}</p>
+                        <div class="colum" v-for="(item, index) in this.showform.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)" :key="index">
+                            <p class="font questionName">{{ this.showform[index].title }}</p>
+                            <textarea name="" id="" cols="30" rows="10" disabled style="resize: none;height: 30px; margin-bottom: 10px;" v-if="this.showform[index].options === ''"></textarea>
+                            <div class="selection" v-for="(item, x) in this.showform[index].options.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)" :key="x">
+                                <input type="radio" name="1" style="margin-right: 5px;" v-if="this.showform[index].type === '單選題'">
+                                <input type="checkbox" name="" id="" style="margin-right: 5px;" v-if="this.showform[index].type === '多選題'">
+                                <p class="font questionSlection" >{{ (x+1) + ". " + this.showform[index].options[x] }}</p>
+                            </div>
                         </div> 
                     </div>
                     <nav aria-label="Page navigation">
@@ -219,6 +235,10 @@ export default{
                             .questionSlection{
                                 width: 50%;
                                 text-align: start;
+                            }
+                            .selection{
+                                width: 50%;
+                                display: flex;
                                 margin: 0 auto;
                             }
                         }

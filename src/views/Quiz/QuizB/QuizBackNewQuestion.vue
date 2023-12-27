@@ -64,6 +64,10 @@ export default{
         totalPages() {
             return Math.ceil(this.questionList.length / this.itemsPerPage);
         },
+        textareaDisabled(){
+            console.log(this.type)
+            return this.type == 2
+        },
     },
     methods:{
         changePage(newPage) {
@@ -183,13 +187,13 @@ export default{
                 </div>
                 <div class="interducebox">
                     <p class="font name">選項：</p>
-                        <textarea name="" id="" cols="30" rows="10" class="interduceinput" v-model="this.selectionO"></textarea>
+                        <textarea name="" id="" cols="30" rows="10" class="interduceinput" v-model="this.selectionO" :disabled="textareaDisabled"></textarea>
                 </div>
                 <div class="seletionBox" v-for="(item, index) in this.selection" :key="index">
                     <p  style="margin: 0 0 0 18%; text-align: start;">{{ (index+1)+ "　" + item }}</p>
                     <i class="fa-solid fa-trash-can" @click="deleteSlection(index)" style="margin-left: 5px;margin-top: 2px;"></i>
                 </div>
-                <button type="button" class="font" @click="newSlection" style="height: 5%; border: 1px solid black; border-radius: 4px; margin: 20px 60% 20px 0;">新增選項</button>
+                <button type="button" class="font" @click="newSlection" style="height: 5%; border: 1px solid black; border-radius: 4px; margin: 20px 60% 20px 0;" :disabled="textareaDisabled">新增選項</button>
                 <button type="button" class="font" @click="newW()" style="height: 5%; border: 1px solid black; border-radius: 4px; margin: 20px 60% 20px 0;">新增問題</button>
                 <div class="columT">
                     <p class="font number"></p>
@@ -207,7 +211,7 @@ export default{
                     <p class="font start">{{ this.questionList[(this.currentPage - 1) * this.itemsPerPage + index].type }}</p>
                     <!-- <p class="font end">{{ this.searchResult[index].necessary }}</p> -->
                     <div class="font end"><input type="checkbox" name="" id="" disabled v-model="this.questionList[(this.currentPage - 1) * this.itemsPerPage + index].necessary" style="height: 20px; width: 20px;"></div>
-                    <p class="font result"><button type="button" class="btn btn-primary btmC" data-bs-toggle="modal" data-bs-target="#additem" @click="setNumberOfChage(index)">修改</button></p>
+                    <p class="font result"><button type="button" class="btn btn-primary btmC" data-bs-toggle="modal" data-bs-target="#additem" @click="setNumberOfChage(index)" :disabled="item.type === '簡答題'">修改</button></p>
                 </div>
                 <!-- Modal -->
                 <div class="modal fade" id="additem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
