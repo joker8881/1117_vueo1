@@ -25,7 +25,7 @@ export default{
     computed: {
     //計算總頁數
         totalPages() {
-            return Math.ceil(this.searchResult.length / this.itemsPerPage);
+            return Math.ceil(this.showform.length / this.itemsPerPage);
         },
     },
     methods:{
@@ -40,14 +40,43 @@ export default{
                 this.pageC = "你已經到第一頁了"
             } 
         },
-        confirmB(){
+        confirmH(){
             this.sendout= {}
             this.sendout = {
                 name: this.name,
                 description: this.introduce,
                 startDate: this.startdate,
                 endDate: this.enddate,
-                questionList: this.questionList,
+                questionList: this.packageCheck.questionList,
+                inPublished:false
+            }
+            fetch('http://localhost:8080/quiz/create', {
+            method: 'POST', // 這裡使用POST方法，因為後端是@PostMapping
+            headers: {
+                'Content-Type': 'application/json'
+            },
+                body: JSON.stringify(this.sendout)
+            })
+            .then(response => response.json())
+            .then(data => {
+            // 處理返回的數據
+                console.log(data)
+                localStorage.removeItem("quizoutCheck")
+                localStorage.removeItem("newquiz")
+                this.$router.push("/quizBackShow")
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+        },
+        confirmP(){
+            this.sendout= {}
+            this.sendout = {
+                name: this.name,
+                description: this.introduce,
+                startDate: this.startdate,
+                endDate: this.enddate,
+                questionList: this.packageCheck.questionList,
                 inPublished:true
             }
             fetch('http://localhost:8080/quiz/create', {
@@ -68,7 +97,6 @@ export default{
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
-
         },
     },
     mounted(){
@@ -83,19 +111,17 @@ export default{
         for(let i = 0 ; i < this.packageCheck.questionList.length ; i++){
             this.showform.push(this.packageCheck.questionList[i])
         }
-        // this.packageCheck.questionList.forEach(element => {
-        //     // console.log(element)
-        //     this.showform.push(element)
-        // });
         console.log(this.showform)
         for(let i = 0 ; i < this.showform.length ; i++){
             if(this.showform[i].options == ""){
-
             } else {
                 this.showform[i].options = this.showform[i].options.split(', ')
             }
         }
+        //這行程式碼會導致我的檔案變成陣列而不是字串，最後無法傳輸檔案
         console.log(this.showform)
+        this.packageCheck = JSON.parse(localStorage.getItem("quizoutCheck"))
+        console.log(this.packageCheck)
     }
 }
 </script>
@@ -123,7 +149,7 @@ export default{
                 <div class="font quizList">
                     <div class="columBox" v-if="dataLoaded">
                         <div class="colum" v-for="(item, index) in this.showform.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)" :key="index">
-                            <p class="font questionName">{{ this.showform[index].title }}</p>
+                            <p class="font questionName">{{ item.title }}</p>
                             <textarea name="" id="" cols="30" rows="10" disabled style="resize: none;height: 30px; margin-bottom: 10px;" v-if="this.showform[index].options === ''"></textarea>
                             <div class="selection" v-for="(item, x) in this.showform[index].options.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)" :key="x">
                                 <input type="radio" name="1" style="margin-right: 5px;" v-if="this.showform[index].type === '單選題'">
@@ -158,7 +184,8 @@ export default{
                         </ul>
                     </nav>
                     <button type="button" class="font" style="height: 25%; border: 1px solid black; border-radius: 4px; margin-right: 5%;"><RouterLink to="/quizBackNewQuestion">取消</RouterLink></button>
-                    <button type="button" class="font" @click="confirmB" style="height: 25%; border: 1px solid black; border-radius: 4px;">確認</button>
+                    <button type="button" class="font" @click="confirmH()" style="height: 25%; border: 1px solid black; border-radius: 4px;margin-right: 5%;">確認但不發布</button>
+                    <button type="button" class="font" @click="confirmP()" style="height: 25%; border: 1px solid black; border-radius: 4px;">確認並發布</button>
                 </div>
             </div>
         </div>

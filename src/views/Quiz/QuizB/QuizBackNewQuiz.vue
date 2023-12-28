@@ -55,32 +55,6 @@ export default{
                 console.log(this.packageA)
                 this.$router.push("/quizBackNewQuestion")
                 localStorage.setItem("newquiz",JSON.stringify(this.packageA))
-                // this.allarr = JSON.parse(localStorage.getItem(this.logaccount))
-                
-            //     fetch('http://localhost:8080/quiz/create', {
-            //     method: 'POST', // 這裡使用POST方法，因為後端是@PostMapping
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify({
-            //         name:this.name,
-            //         description:this.introduce,
-            //         startDate:this.startdate,
-            //         endDate:this.enddate,
-            //         questionList:"",
-            //         inPublished:true,
-            //     })
-            // })
-            // .then(response => response.json())
-            // .then(data => {
-            // // 處理返回的數據
-            //     console.log(data)
-            //     // this.$router.push("/quizBackNewQuestion")
-            // })
-            // .catch(error => {
-            //     console.error('Error fetching data:', error);
-            //     this.$router.push("/quizBackNewQuestion")
-            // });
             } else if(this.name == ""){
                 this.nextmessage = "請輸入問卷名稱"
             } else if(this.introduce == ""){

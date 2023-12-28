@@ -16,22 +16,6 @@ export default{
         // 轉換用陣列
         currentPage:1,
         itemsPerPage:5,
-        searchResult:[
-                {
-                    number:1,
-                    content: "如果你說你愛我",
-                    type:"單選",
-                    necessary:true,
-                    result:"前往"
-                },
-                {
-                    number:2,
-                    content: "如果你說你愛我",
-                    type:"複選",
-                    necessary:false,
-                    result:"前往"
-                },
-            ],
         packageB:[],
         pageC:"",
         quizName:"AAA",
