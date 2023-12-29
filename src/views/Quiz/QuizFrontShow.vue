@@ -32,7 +32,12 @@ export default{
             ],
         packageB:[],
         quizName:"AAA",
-
+        whatever:{},
+        showSerch:false,
+        show:false,
+        //登入
+        account:"",
+        password:""
         }
     },
     components: {
@@ -54,20 +59,30 @@ export default{
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    quizName:'',
-                    startDate:'',
-                    endDate:'',
+                    quizName:this.searchText,
+                    startDate:this.searchStart,
+                    endDate:this.searchEnd,
+                    login: false,
                 })
             })
             .then(response => response.json())
             .then(data => {
             // 處理返回的數據
-              console.log(data)
+                console.log(data)
+                this.whatever = data.quizList
+                console.log(this.whatever)
+                for(let i = 0 ; i <this.whatever.length ; i++){
+                  if(this.whatever[i].questions != null || this.whatever[i].questions !=""){
+                    this.whatever[i].questions = JSON.parse(this.whatever[i].questions)
+                  }
+                }
+                console.log(this.whatever)
+                this.showSerch = true
             })
             .catch(error => {
-              console.error('Error fetching data:', error);
+                console.error('Error fetching data:', error);
             });
-      },
+    },
             changePage(newPage) {
               this.pageC = ""
               this.currentIndexToDelete = 0
@@ -80,11 +95,51 @@ export default{
               } 
       },
       getLocalDate() {
-      const now = new Date();
-      // 获取西元年-月-日格式
-      this.localDate = now.toLocaleDateString('en-US'); // 根据需要设置不同的语言环境
-      console.log(this.localDate)
+          const now = new Date();
+          // 西元年-月-日格式
+          this.localDate = now.toLocaleDateString('en-US'); 
+          let dateObject = new Date(this.localDate)
+          this.localDate = dateObject.getFullYear() + '-' + (dateObject.getMonth() + 1).toString().padStart(2, '0') + '-' + (dateObject.getDate()).toString().padStart(2, '0');
+          console.log(this.localDate)
+        },
+        clickC(){
+      let e = document.getElementsByName("eye")
+      let acc = document.getElementById("acc")
+      if(e.class == "fa-solid fa-eye fa-lg eye"){
+        e.class="fa-solid fa-eye-slash fa-lg eye"
+        acc.type="text"
+        this.show = 1
+      } else{
+        e.class="fa-solid fa-eye fa-lg eye"
+        acc.type="password"
+        this.show = 0
+      }
     },
+    login(){
+      fetch('http://localhost:8080/quiz/login', {
+                method: 'POST', // 這裡使用POST方法，因為後端是@PostMapping
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  account:this.account,
+                  password:this.password,
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+            // 處理返回的數據
+                console.log(data)
+                this.$router.push("/quizBackShow")
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    },
+    writeRespond(x){
+      localStorage.setItem("quizIndex",JSON.stringify(x))
+      this.$router.push("/quizAnswer")
+    }
     },
     mounted(){
       this.setLocation(17)
@@ -106,6 +161,7 @@ export default{
                 <p class="b" >到</p>
                 <input type="date" class="searchDayD" name="" id="" v-model="searchEnd">
                 <button type="button" class="searchB" @click="search">搜尋</button>
+                <button type="button" class="searchB" style="width: 100px;" data-bs-toggle="modal" data-bs-target="#login">登入</button>
             </div>
         </div>
         <div class="tablebox">
@@ -115,19 +171,61 @@ export default{
                 <p class="font state">狀態</p>
                 <p class="font start">開始時間</p>
                 <p class="font end">結束時間</p>
+                <p class="font pabulish">填寫</p>
                 <P class="font result">結果</P>
             </div>
             <div class="columBox">
-              <div class="colum" v-for="(item, index) in this.searchResult.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)" :key="index">
-                    <p class="font number">{{ this.searchResult[index].number }}</p>
-                    <p class="font name">{{ this.searchResult[index].name }}</p>
-                    <p class="font state">{{ this.searchResult[index].state }}</p>
-                    <p class="font start">{{ this.searchResult[index].start }}</p>
-                    <p class="font end">{{ this.searchResult[index].end }}</p>
-                    <p class="font result">{{ this.searchResult[index].result }}</p>
+              <div class="colum" v-if="this.showSerch" v-for="(item, x) in this.whatever.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)" :key="x">
+                    <p class="font number">{{ item.index }}</p>
+                    <p class="font name">{{ item.name }}</p>
+                    <p class="font state" v-if="item.startDate > this.localDate" style="background-color:#B19693">尚未開始</p>
+                    <p class="font state" v-if="item.startDate <= this.localDate && this.localDate <= item.endDate" style="background-color: #86C166">開始填寫</p>
+                    <p class="font state" v-if="item.endDate < this.localDate" style="background-color: #F19483;">已結束</p>
+                    <p class="font start">{{ item.startDate }}</p>
+                    <p class="font end">{{ item.endDate }}</p>
+                    <!-- <p class="font pabulish" v-if="item.published == false">未發布</p>
+                    <p class="font pabulish" v-if="item.published == true">已發布</p> -->
+                    <button type="button" class="font pabulish" @click="" v-if="item.startDate > this.localDate || item.endDate < this.localDate" disabled>填寫</button>
+                    <button type="button" class="font pabulish" @click="writeRespond(item.index)" v-if="(item.startDate <= this.localDate && this.localDate <= item.endDate)">填寫</button>
+                    <!-- <div class="font delete"></div> -->
+                    <button type="button" class="font result" @click="" data-bs-toggle="modal" data-bs-target="#delete">前往</button>
+                    <!-- <p class="font result" @click="searchForRespond">查看</p> -->
               </div> 
             </div>
-          <nav aria-label="Page navigation">
+            <!-- 登入的地方 -->
+            <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title font" id="exampleModalLabel">請輸入帳號密碼來登入</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body mbl">
+                    <div class="form-floating mb-3">
+                      <div class="interduceboxX">
+                        <p class="font">帳號</p>
+                        <div class="form-floating mb-3">
+                          <input type="text" class="form-control tb" id="floatingInput" placeholder="name@example.com" v-model="this.account">
+                          <label class="tbc font" for="floatingInput">請在這裡輸入帳號</label>
+                        </div>
+                      </div>
+                      <p class="font">密碼</p>
+                      <div class="form-floating mb-3">
+                        <input type="password" class="form-control tbp" id="acc" placeholder="" v-model="this.password">
+                        <i v-if="this.show == 0" class="fa-solid fa-eye fa-lg eye" @click="this.clickC()" name="eye"></i>
+                        <i v-if="this.show == 1" class="fa-solid fa-eye-slash fa-lg eye" @click="this.clickC()" name="eye"></i>
+                        <label class="tbc font" for="floatingInput">請在這裡輸入密碼</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer" style="justify-content: space-around;">
+                    <button type="button" class="btn btn-primary font" data-bs-dismiss="modal" style="background-color: red;border: none;" >取消</button>
+                    <button type="button" class="btn btn-primary font" data-bs-dismiss="modal" style="border: none; background-color: green;" @click="login">登入</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <nav aria-label="Page navigation" style="margin-top: 20px;">
             <ul class="pagination justify-content-center">
               <Popper arrow placement="top" class="root" :content="this.pageC">
                 <li class="page-item" @click="changePage(this.currentPage - 1)"><a class="page-link" href="#">上一頁</a></li>
@@ -152,7 +250,6 @@ export default{
               </Popper>
             </ul>
           </nav>
-          <RouterLink to="/quizBackNewQuiz">create</RouterLink>
         </div>
     </div>
 </template>
@@ -223,7 +320,7 @@ export default{
                 }
                 .searchB{
                     width: 80px;
-                    margin-left: 60px;
+                    margin-left: 30px;
                     font-size: 1.2em;
                     font-family: "jf-openhuninn-2.0";
                     border: none;
@@ -248,10 +345,13 @@ export default{
                 width: 15%;
             }
             .start{
-                width: 20%;
+                width: 15%;
             }
             .end{
-                width: 20%;
+                width: 15%;
+            }
+            .pabulish{
+              width: 10%;
             }
             .result{
                 width: 10%;
@@ -282,11 +382,15 @@ export default{
       border: 1px solid slategray;
     }
     .start{
-      width: 20%;
+      width: 15%;
       border: 1px solid slategray;
     }
     .end{
-      width: 20%;
+      width: 15%;
+      border: 1px solid slategray;
+    }
+    .pabulish{
+      width: 10%;
       border: 1px solid slategray;
     }
     .result{
@@ -306,4 +410,25 @@ export default{
     --popper-theme-box-shadow: 0 6px 30px -6px rgba(0, 0, 0, 0.25);
     font-family: "jf-openhuninn-2.0";
     }
+    .tb{
+    width: 80%;
+    margin: 0 auto;
+  }
+    .tbp{
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+  }
+  .tbc{
+    margin-left: 10%;
+  }
+  .eye{
+    position: absolute;
+    bottom: 50%;
+    right: 14%;
+    transition: 0.3s;
+    &:hover{
+      color: rgb(255, 173, 65);
+    }
+  }
 </style>

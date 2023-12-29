@@ -148,13 +148,14 @@ export default{
                 </div>
                 <div class="font quizList">
                     <div class="columBox" v-if="dataLoaded">
-                        <div class="colum" v-for="(item, index) in this.showform.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)" :key="index">
-                            <p class="font questionName">{{ item.title }}</p>
-                            <textarea name="" id="" cols="30" rows="10" disabled style="resize: none;height: 30px; margin-bottom: 10px;" v-if="this.showform[index].options === ''"></textarea>
-                            <div class="selection" v-for="(item, x) in this.showform[index].options.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)" :key="x">
-                                <input type="radio" name="1" style="margin-right: 5px;" v-if="this.showform[index].type === '單選題'">
-                                <input type="checkbox" name="" id="" style="margin-right: 5px;" v-if="this.showform[index].type === '多選題'">
-                                <p class="font questionSlection" >{{ (x+1) + ". " + this.showform[index].options[x] }}</p>
+                        <div class="colum" v-for="(question, questionIndex) in this.showform.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)" :key="questionIndex">
+                            <p class="font questionName">{{ question.title }}</p>
+                            <textarea  name="" id="" cols="30" rows="10" style="resize: none;height: 150px; margin-bottom: 10px;" v-if="question.options === ''"></textarea>
+                            <div class="selection" v-for="(option, optionIndex) in question.options" :key="optionIndex">
+                                <!-- <p>{{ question }}</p> -->
+                                <input type="radio"  :value="optionIndex" :name="questionIndex" value="" style="margin-right: 5px;" v-if="question.type === '單選題'">
+                                <input type="checkbox" :value="optionIndex" name="" id="" style="margin-right: 5px;" v-if="question.type === '多選題'">
+                                <p class="font questionSlection" >{{ (optionIndex+1) + ". " + option }}</p>
                             </div>
                         </div> 
                     </div>

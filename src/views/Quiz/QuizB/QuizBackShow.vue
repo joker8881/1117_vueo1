@@ -248,10 +248,10 @@ export default{
           this.changeSelection = ""
           this.catchShow = false
         },
-        deleteQuiz(index){
+        deleteQuiz(YYY){
           let x = this.whatever.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)
-          this.deleteIndex = x[index].index
-          this.arrayIndex = ((this.currentPage - 1) * this.itemsPerPage) + index
+          this.deleteIndex = x[YYY].index
+          this.arrayIndex = ((this.currentPage - 1) * this.itemsPerPage) + YYY
           console.log(this.deleteIndex)
           console.log(this.arrayIndex)
         },
@@ -433,31 +433,6 @@ export default{
                       <p class="font questionSlection" >{{ (x+1) + ". " + this.changeSelection[index].options[x] }}</p>
                     </div>
                   </div>
-                  <!-- <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center">
-                      <Popper arrow placement="top" class="root" :content="this.pageC">
-                        <li class="page-item" @click="changeBoxPage(this.currentPage - 1)"><a class="page-link" href="#">上一頁</a></li>
-                      </Popper>
-                      <Popper arrow placement="top" class="root" :content="this.pageC">
-                        <li class="page-item" @click="changeBoxPage(page)" ><a class="page-link" href="#" disabled="!isInputValid">{{this.currentPage}}</a></li>
-                      </Popper>
-                      <Popper arrow placement="top" class="root" :content="this.pageC">
-                        <li class="page-item" @click="changeBoxPage(this.currentPage+1)"><a class="page-link" href="#">{{this.currentPage+1}}</a></li>
-                      </Popper>
-                      <Popper arrow placement="top" class="root" :content="this.pageC">
-                        <li class="page-item" @click="changeBoxPage(this.currentPage+2)"><a class="page-link" href="#">{{this.currentPage+2}}</a></li>
-                      </Popper>
-                      <Popper arrow placement="top" class="root" :content="this.pageC">
-                        <li class="page-item" @click="changeBoxPage(this.currentPage+3)"><a class="page-link" href="#">{{this.currentPage+3}}</a></li>
-                      </Popper>
-                      <Popper arrow placement="top" class="root" :content="this.pageC">
-                        <li class="page-item" @click="changeBoxPage(this.currentPage+4)"><a class="page-link" href="#">{{this.currentPage+4}}</a></li>
-                      </Popper>
-                      <Popper arrow placement="top" class="root" :content="this.pageC">
-                        <li class="page-item" @click="changeBoxPage(this.currentPage + 1)"><a class="page-link" href="#">上一頁</a></li>
-                      </Popper>
-                    </ul>
-                  </nav> -->
                 </div>
                 <div class="modal-footer" style="justify-content: space-around;">
                     <button type="button" class="btn btn-primary a" data-bs-dismiss="modal" style="background-color: green;border: none;">取消</button>
@@ -493,6 +468,7 @@ export default{
             </ul>
           </nav>
         </div>
+        <button type="button" class="searchB" style="width: 100px;"><RouterLink to="/quiz" class="font" style="color: black;text-decoration: none;font-size: 1em;">登出</RouterLink></button>
     </div>
 </template>
 
@@ -603,6 +579,14 @@ export default{
             }
             }
         }
+        .searchB{
+                    width: 80px;
+                    margin-left: 40px;
+                    font-size: 1.2em;
+                    font-family: "jf-openhuninn-2.0";
+                    border: none;
+                    border-radius: 5px;
+                }
     }
     .columBox{
   height: 60%;

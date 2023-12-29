@@ -83,6 +83,7 @@ export default{
         },
         newW(){
             this.selectionT= []
+            console.log(this.selection)
             this.selection = this.selection.join(', ')
             console.log(this.selection)
             this.selectionT = {
