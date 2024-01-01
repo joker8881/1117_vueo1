@@ -293,7 +293,7 @@ export default{
                 }
                 .searchB{
                     width: 80px;
-                    margin-left: 60px;
+                    margin-left: 40px;
                     font-size: 1.2em;
                     font-family: "jf-openhuninn-2.0";
                     border: none;

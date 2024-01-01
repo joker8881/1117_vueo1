@@ -305,6 +305,10 @@ export default{
             this.selection = []
             // localStorage.setItem("savemyquiz",JSON.stringify(this.packageA))
         },
+        searchForRespond(x){
+          localStorage.setItem("quizRespondIndex",JSON.stringify(x))
+          this.$router.push("/quziBackRespond")
+        }
     },
     mounted(){
       this.getLocalDate()
@@ -353,7 +357,7 @@ export default{
                     <!-- <p class="font pabulish" v-if="item.published == false">未發布</p>
                     <p class="font pabulish" v-if="item.published == true">已發布</p> -->
                     <button type="button" class="font result" @click="searchForRespond" v-if="item.startDate > this.localDate" disabled>查看</button>
-                    <button type="button" class="font result" @click="searchForRespond" v-if="(item.startDate <= this.localDate && this.localDate <= item.endDate) || item.endDate < this.localDate">查看</button>
+                    <button type="button" class="font result" @click="searchForRespond(item.index)" v-if="(item.startDate <= this.localDate && this.localDate <= item.endDate) || item.endDate < this.localDate">查看</button>
                     <!-- <div class="font delete"></div> -->
                     <button type="button" class="font delete" @click="deleteQuiz(index)" data-bs-toggle="modal" data-bs-target="#delete"><i class="fa-solid fa-trash-can"></i></button>
                     <!-- <p class="font result" @click="searchForRespond">查看</p> -->
@@ -479,7 +483,7 @@ export default{
         font-family: "jf-openhuninn-2.0";
     }
     .box{
-        height: 100%;
+        height: 110%;
         width: 80%;
         margin: 0 auto ;
         background-color: bisque;

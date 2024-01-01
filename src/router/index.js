@@ -150,6 +150,16 @@ const router = createRouter({
       name: 'quziBackQuizCheck',
       component: () => import('../views/Quiz/QuizB/QuziBackQuizCheck.vue')
     },
+    {
+      path: '/quziBackRespond',
+      name: 'quziBackRespond',
+      component: () => import('../views/Quiz/QuizB/QuizBackRespond.vue')
+    },
+    {
+      path: '/quizBackStatic',
+      name: 'quizBackStatic',
+      component: () => import('../views/Quiz/QuizB/QuizBackStatic.vue')
+    },
   ]
 })
 

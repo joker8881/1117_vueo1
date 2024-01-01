@@ -95,47 +95,39 @@ export default{
                 // {1.},{2.},{3.}
     },
         test(){
-            this.sendAnswers = JSON.stringify(this.selectedAnswers)
-            console.log(JSON.stringify(this.selectedAnswers))
-            // if(this.quizIndex > 0 && this.writername != "" && this.writerphone != "" && this.writermail != "" 
-            // && this.writerage > 0 && this.selectedAnswers != ""){
-            //     this.sendAnswers = JSON.stringify(this.selectedAnswers)
-            //     console.log(this.sendAnswers)
-            //     this.sendout= {}
-            //     this.sendout = {
-            //         quizIndex: this.quizIndex,
-            //         name: this.writername,
-            //         phone: this.writerphone,
-            //         email: this.writermail,
-            //         age: this.writerage,
-            //         answers:this.sendAnswers
-            //     }
-            //     fetch('http://localhost:8080/quiz/write', {
-            //     method: 'POST', // 這裡使用POST方法，因為後端是@PostMapping
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     },
-            //         body: JSON.stringify(this.sendout)
-            //     })
-            //     .then(response => response.json())
-            //     .then(data => {
-            //     // 處理返回的數據
-            //         console.log(data)
-            //     })
-            //     .catch(error => {
-            //         console.error('Error fetching data:', error);
-            //     });
-            // } else if(this.writername == ""){
-            //     this.nextmessage = "請輸入你的名字"
-            // } else if(this.writerphone == ""){
-            //     this.nextmessage = "請輸入電話"
-            // } else if(this.writermail == ""){
-            //     this.nextmessage = "請輸入信箱"
-            // } else if(this.writerage == "" || this.writerage < 0){
-            //     this.nextmessage = "請輸入正確的年齡"
-            // } else if(this.selectedAnswers == "" || this.selectedAnswers == null){
-            //     this.nextmessage = "沒有填寫答案"
-            // }
+            if(this.quizIndex > 0 && this.writername != "" && this.writerphone != "" && this.writermail != "" 
+            && this.writerage > 0 && this.selectedAnswers != ""){
+                this.nextmessage = ""
+                // this.sendAnswers = JSON.stringify(this.selectedAnswers)
+                this.sendAnswers = this.selectedAnswers
+                console.log(this.sendAnswers)
+                this.sendout= {}
+                this.sendout = {
+                    quizIndex: this.quizIndex,
+                    name: this.writername,
+                    phone: this.writerphone,
+                    email: this.writermail,
+                    age: this.writerage,
+                    answers:this.sendAnswers,
+                    quizName:this.name,
+                    introduce:this.introduce,
+                    startdate:this.startdate,
+                    endDate:this.enddate,
+                    questions:this.fillobject.questions
+                }
+                localStorage.setItem("quizAnswerCheck",JSON.stringify(this.sendout))
+                this.$router.push("/quizAnswerCheck")
+            } else if(this.writername == ""){
+                this.nextmessage = "請輸入你的名字"
+            } else if(this.writerphone == ""){
+                this.nextmessage = "請輸入電話"
+            } else if(this.writermail == ""){
+                this.nextmessage = "請輸入信箱"
+            } else if(this.writerage == "" || this.writerage < 0){
+                this.nextmessage = "請輸入正確的年齡"
+            } else if(this.selectedAnswers == "" || this.selectedAnswers == null){
+                this.nextmessage = "沒有填寫答案"
+            }
         },
     },
     mounted(){
@@ -223,7 +215,7 @@ export default{
                     </nav>
                     <button type="button" class="font" style="height: 25%; border: 1px solid black; border-radius: 4px; margin-right: 5%;"><RouterLink to="/quiz">取消</RouterLink></button>
                     <Popper  arrow placement="top" class="root" :content="this.nextmessage">
-                        <button type="button" class="font" @click="test()" style="width: 120px; height: 25%; border: 1px solid black; border-radius: 4px;margin-right: 5%;">測試陣列</button>
+                        <button type="button" class="font" @click="test()" style="width: 120px; height: 25%; border: 1px solid black; border-radius: 4px;margin-right: 5%;">確認</button>
                     </Popper>
                 </div>
             </div>
@@ -256,14 +248,14 @@ export default{
                     width: 15%;
                     margin: 0;
                     font-size: 1.2em;
-                    line-height: 150%;
+                    line-height: 300%;
                     font-family: "jf-openhuninn-2.0";
                 }
                 .labelS{
                     width: 15%;
                     margin: 0;
                     font-size: 1.2em;
-                    line-height: 150%;
+                    line-height: 300%;
                     font-family: "jf-openhuninn-2.0";
                     background-color: white;    
                     border-radius: 3px;
