@@ -150,11 +150,11 @@ export default{
                     <div class="columBox" v-if="dataLoaded">
                         <div class="colum" v-for="(question, questionIndex) in this.showform.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)" :key="questionIndex">
                             <p class="font questionName">{{ question.title }}</p>
-                            <textarea  name="" id="" cols="30" rows="10" style="resize: none;height: 150px; margin-bottom: 10px;" v-if="question.options === ''"></textarea>
+                            <textarea  name="" id="" cols="30" rows="10" style="resize: none;height: 150px; margin-bottom: 10px;" v-if="question.options === ''" disabled></textarea>
                             <div class="selection" v-for="(option, optionIndex) in question.options" :key="optionIndex">
                                 <!-- <p>{{ question }}</p> -->
-                                <input type="radio"  :value="optionIndex" :name="questionIndex" value="" style="margin-right: 5px;" v-if="question.type === '單選題'">
-                                <input type="checkbox" :value="optionIndex" name="" id="" style="margin-right: 5px;" v-if="question.type === '多選題'">
+                                <input type="radio"  :value="optionIndex" :name="questionIndex" value="" style="margin-right: 5px;" v-if="question.type === '單選題'" disabled>
+                                <input type="checkbox" :value="optionIndex" name="" id="" style="margin-right: 5px;" v-if="question.type === '多選題'" disabled>
                                 <p class="font questionSlection" >{{ (optionIndex+1) + ". " + option }}</p>
                             </div>
                         </div> 

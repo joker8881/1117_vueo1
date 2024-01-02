@@ -312,6 +312,7 @@ export default{
     },
     mounted(){
       this.getLocalDate()
+      this.search()
     },
 }
 </script>
@@ -352,7 +353,7 @@ export default{
                     <p class="font state" v-if="item.endDate < this.localDate" style="background-color: #F19483;">已結束</p>
                     <p class="font start">{{ item.startDate }}</p>
                     <p class="font end">{{ item.endDate }}</p>
-                    <button type="button" class="font pabulish" v-if="item.published == false" data-bs-toggle="modal" data-bs-target="#update" @click="updateCatch(index)">未發佈</button>
+                    <button type="button" class="font pabulish" v-if="item.published == false" data-bs-toggle="modal" data-bs-target="#update" @click="updateCatch(index)" :disabled="item.endDate < this.localDate">未發佈</button>
                     <button type="button" class="font pabulish" v-if="item.published == true" disabled>已發佈</button>
                     <!-- <p class="font pabulish" v-if="item.published == false">未發布</p>
                     <p class="font pabulish" v-if="item.published == true">已發布</p> -->

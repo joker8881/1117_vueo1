@@ -170,7 +170,7 @@ export default{
                     <input type="checkbox" name="" id="" style="margin: 0 20px;" v-model="this.necessary">
                     <p class="font name" style="line-height: 200%;">必填</p>
                 </div>
-                <div class="interducebox">
+                <div class="interducebox" v-if="this.type != 2">
                     <p class="font name">選項：</p>
                         <textarea name="" id="" cols="30" rows="10" class="interduceinput" v-model="this.selectionO" :disabled="textareaDisabled"></textarea>
                 </div>
@@ -178,7 +178,7 @@ export default{
                     <p  style="margin: 0 0 0 18%; text-align: start;">{{ (index+1)+ "　" + item }}</p>
                     <i class="fa-solid fa-trash-can" @click="deleteSlection(index)" style="margin-left: 5px;margin-top: 2px;"></i>
                 </div>
-                <button type="button" class="font" @click="newSlection" style="height: 5%; border: 1px solid black; border-radius: 4px; margin: 20px 60% 20px 0;" :disabled="textareaDisabled">新增選項</button>
+                <button type="button" class="font" @click="newSlection" style="height: 5%; border: 1px solid black; border-radius: 4px; margin: 20px 60% 20px 0;" :disabled="textareaDisabled" v-if="this.type != 2">新增選項</button>
                 <button type="button" class="font" @click="newW()" style="height: 5%; border: 1px solid black; border-radius: 4px; margin: 20px 60% 20px 0;">新增問題</button>
                 <div class="columT">
                     <p class="font number"></p>
@@ -302,7 +302,7 @@ export default{
                 }
             }
             .writebox{
-                height: 90%;
+                height: 101%;
                 width: 100%;
                 background-color: white;
                 // border-radius: 3px;
