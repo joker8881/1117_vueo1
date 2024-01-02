@@ -144,6 +144,7 @@ export default{
     mounted(){
       this.setLocation(17)
       this.getLocalDate()
+      this.search()
     },
 }
 </script>
